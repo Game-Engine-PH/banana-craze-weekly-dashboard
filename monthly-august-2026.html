@@ -167,6 +167,10 @@
   .info-row .k{color:var(--muted); flex:0 0 auto; max-width:42%;}
   .info-row .v{font-weight:700; color:var(--navy); text-align:right; white-space:normal; margin-left:10px; flex:1 1 0; min-width:0;}
   .info-row .v.green{color:var(--green);} .info-row .v.amber{color:#9A6A0A;} .info-row .v.red{color:var(--red);}
+  .info-panel ul.read-list{margin:2px 0 0; padding-left:16px; font-size:12px; line-height:1.6; color:var(--navy);}
+  .info-panel ul.read-list li{margin-bottom:8px;}
+  .info-panel ul.read-list li:last-child{margin-bottom:0;}
+  .info-panel ul.read-list b{color:var(--navy);}
 
   .row{display:grid; gap:12px; min-width:0;}
   .row > *{min-width:0;}
@@ -230,6 +234,34 @@
 
   .page{display:none;}
   .page.active{display:block;}
+
+  /* ---- injected: editable analysis blocks ---- */
+  .note{position:relative;}
+  .note-edit-btn{position:absolute; top:6px; right:7px; width:20px; height:20px; padding:0;
+    display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.16); border-radius:5px; color:#C7D0E8; font-size:11px;
+    line-height:1; cursor:pointer; opacity:0; transition:opacity .12s ease, background .12s ease;}
+  .note:hover .note-edit-btn, .note-edit-btn:focus{opacity:1;}
+  .note-edit-btn:hover{background:rgba(255,255,255,.18); color:#fff;}
+  .note-edit-btn.editing{opacity:1; background:#118DFF; border-color:#118DFF; color:#fff;}
+  .note-override-view{white-space:pre-wrap;}
+  .note-edit-panel{margin-top:4px;}
+  .note-textarea{width:100%; min-height:70px; resize:vertical; box-sizing:border-box; font:inherit;
+    font-size:11px; line-height:1.55; color:#EAF0FF; background:rgba(0,0,0,.22);
+    border:1px solid rgba(255,255,255,.2); border-radius:6px; padding:7px 9px;}
+  .note-textarea:focus{outline:none; border-color:#118DFF;}
+  .note-edit-actions{display:flex; gap:6px; margin-top:6px;}
+  .note-btn{font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:5px; cursor:pointer;
+    border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); color:#C7D0E8;}
+  .note-btn:hover{background:rgba(255,255,255,.14); color:#fff;}
+  /* ---- injected: cross-report navigation ---- */
+  .report-switch{display:flex; gap:4px; background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.16); border-radius:20px; padding:2px; margin-right:10px;}
+  .report-switch a{text-decoration:none; color:#B9C4E0; font-size:10.5px; font-weight:700;
+    padding:4px 11px; border-radius:16px; letter-spacing:.02em; white-space:nowrap;}
+  .report-switch a:hover{color:#fff;}
+  .report-switch a.current{background:#8B5CF6; color:#fff;}
+
 </style>
 </head>
 <body>
@@ -279,7 +311,7 @@
         <h1 id="pageHeading">Banana Craze — Overview</h1>
         <div class="sub">Product BP1 · Game: Banana Craze only · Settled Transactions · August 2026</div>
       </div>
-      <div class="badge">FULL MONTH — AUG 1–31</div>
+      <div class="report-switch"><a href="reports/banana_craze_weekly_report_2026-W36.html">Weekly</a><a class="current" href="#">Monthly</a><a href="index.html">All reports</a></div><div class="badge">FULL MONTH — AUG 1–31</div>
     </div>
 
     <div class="filter-strip">
@@ -362,7 +394,7 @@
             <div class="panel">
               <h2>Weekly Trend <small>active weeks, Aug 17–31</small></h2>
               <canvas id="ovWeeklyChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-1"><ul>
                 <li>Week 4 (Aug 17–23, relaunch): <b>₱8,603.75</b> GGR.</li>
                 <li>Week 5 (Aug 24–30, strongest week): <b>₱14,480.00</b> GGR on ₱546,650 bet.</li>
                 <li>Week 6 (Aug 31, one day only): +₱3,617.50 GGR.</li>
@@ -372,7 +404,7 @@
             <div class="panel">
               <h2>Hour-of-Day <small>rounds &amp; GGR</small></h2>
               <canvas id="ovHourChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-2"><ul>
                 <li>Rounds peak in the evening (20:00–23:00, ~5,500–6,900 rounds/hr) and again in the early afternoon (14:00–15:00) — a mobile/casual pattern outside typical office hours.</li>
                 <li>GGR is volatile hour-to-hour: 07:00 alone drags −₱10,903.75 despite modest volume (1,814 rounds), while 03:00 and 15:00 swing sharply positive (+₱8,857.50 and +₱5,356.25).</li>
                 <li>A sign that template mix or short-run variance, not a steady house edge, is driving the hourly result.</li>
@@ -381,7 +413,7 @@
             <div class="panel">
               <h2>Weekday Pattern <small>rounds &amp; GGR</small></h2>
               <canvas id="ovWeekdayChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-3"><ul>
                 <li>Monday is the busiest day (17,117 rounds) and also posts strong positive GGR.</li>
                 <li>Tuesday is the second-busiest (12,464 rounds) but has the thinnest margin (only ₱621.25 GGR) — high volume near break-even.</li>
                 <li>The weekend swings player-favored: Saturday and Sunday both post negative GGR (−₱2,105.00 and −₱1,855.00) despite comparable round volume (~10,600–10,700) to the weekdays.</li>
@@ -390,7 +422,7 @@
             <div class="panel">
               <h2>Player Value Tiers <small>% of bet</small></h2>
               <canvas id="ovTierChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-4"><ul>
                 <li>Just 14 whale players (1.16% of the base) account for 28.51% of total bet volume, and they are the single largest contributor to house GGR (₱12,757.50).</li>
                 <li>The top 10% of players by spend account for 68.12% of total bet — revenue is concentrated in a small group.</li>
                 <li>If these whales churn, the impact on revenue would be significant, so they should be monitored and retained.</li>
@@ -399,7 +431,7 @@
             <div class="panel">
               <h2>Bet Denomination Distribution <small>rounds by stake</small></h2>
               <canvas id="ovBetSizeChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-5"><ul>
                 <li>₱5 is by far the most common stake (56,685 rounds, 71% of volume), confirming the base is dominated by micro-stakes/casual players.</li>
                 <li>Denominations of ₱500+ combine for fewer than 40 rounds all month, so volume is still not high-roller driven.</li>
                 <li>Consistent with the concentration chart: a small number of players hold an outsized bet share even though most individual rounds are tiny.</li>
@@ -408,7 +440,7 @@
             <div class="panel">
               <h2>Ticket Outcome Split <small>79,769 rounds</small></h2>
               <canvas id="ovOutcomeChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-6"><ul>
                 <li>78.3% of rounds are a player loss, 16.5% a win, and only 5.2% a push/refund — consistent across the full month.</li>
                 <li>New players who lose frequently right after they start tend to churn early (see Survival chart): frequent losses discourage continued play.</li>
               </ul></div>
@@ -416,7 +448,7 @@
             <div class="panel">
               <h2>Bet-Type Breakdown <small>rounds/bet/RTP, 4 categories</small></h2>
               <canvas id="ovBetTypeChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-7"><ul>
                 <li><b>Bonus Trigger Round</b> (betType NORMAL_BET with a nonzero <span class="mono">otherWinAmount</span>) is real and material: 1,841 rounds (2.31% of volume) drove a payout-heavy RTP of 1,277.33% on just ₱17,570 of bet — expected, since a triggered feature's payout isn't sized to its small base stake.</li>
                 <li>Buy Feature (293 rounds, 0.37%) carries a much larger average stake (₱202.05/round vs ₱8.91 for Normal Rounds) and actually runs a healthier RTP (81.45%) than Normal Rounds (67.81%) this month.</li>
                 <li>See the Math page for the full reconciled breakdown.</li>
@@ -425,7 +457,7 @@
             <div class="panel">
               <h2>RTP by Template <small>% of rounds</small></h2>
               <canvas id="ovRtpTemplateChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-8"><ul>
                 <li>Template 4 carries the bulk of volume (43.63%) at a healthy 98.54% RTP.</li>
                 <li>Template 8 stands out as a house-favored outlier (68.91% RTP on 4,728 rounds).</li>
                 <li>Templates 7 and 9 swing player-favored (110.97% and 129.95% RTP) on smaller samples (2,599 and 2,122 rounds) — worth monitoring whether this is variance or a pattern that needs correcting.</li>
@@ -434,13 +466,13 @@
             <div class="panel">
               <h2>New Player Survival <small>% still active by round</small></h2>
               <canvas id="ovSurvivalChart" height="170"></canvas>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-9"><ul>
                 <li>Retention drops off quickly — only 60.2% of new players remain active past round 20, and 31.1% past round 50.</li>
                 <li>Lines up with the outcome split above: 78.3% of rounds are a loss, so many new players likely lose early and stop playing soon after — more an outcome/frustration effect than a technical issue.</li>
               </ul></div>
             </div>
           </div>
-          <div class="note">Compact previews of every chart in this report, gathered on one page. Each has a full-size version
+          <div class="note" data-note-id="monthly-10">Compact previews of every chart in this report, gathered on one page. Each has a full-size version
           with supporting tables and notes on its own page (Weekly, Time Patterns, Players &amp; Value, Math &amp; Performance).</div>
         </section>
 
@@ -483,7 +515,7 @@
                 <tr><td><b>Aug 1 – 31, 2026 (Full Month Total)</b></td><td><b><span class="pill low">Relaunch — Full Month</span></b></td><td><b>₱768,175.00</b></td><td><b>₱741,473.75</b></td><td class="green"><b>₱26,701.25</b></td><td><b>96.52%</b></td><td>1,211 users, 79,769 settled rounds</td></tr>
               </tbody>
             </table>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-11"><ul>
               <li>Historical rows for Mar 10 – Jun 6, 2026 are carried over from the prior lifecycle report and were not re-pulled from the API in this refresh.</li>
               <li>All Aug 1–31 figures are computed directly from settled August API order rows (160 pages, 79,769 raw rows, haveNextPage=false).</li>
             </ul></div>
@@ -522,7 +554,7 @@
               <div class="info-row"><span class="k">Busiest weekday, thinnest margin</span><span class="v">Tue — 12,464 rds / ₱621.25 GGR</span></div>
             </div>
           </div>
-          <div class="note">These four panels surface the signals most likely to need follow-up:<ul>
+          <div class="note" data-note-id="monthly-12">These four panels surface the signals most likely to need follow-up:<ul>
             <li>RTP is running just under the 97% target design rate.</li>
             <li>Revenue is concentrated in a small player cohort.</li>
             <li>Most new players churn early.</li>
@@ -545,7 +577,7 @@
               <div class="stat-box flag"><div class="sv">60</div><div class="sl">Bypass bets placed before threshold met</div></div>
               <div class="stat-box"><div class="sv">0</div><div class="sl">Additional players flagged for review</div></div>
             </div>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-13"><ul>
               <li>Banana Craze locks the ₱100 / ₱200 / ₱500 / ₱1,000 stakes behind a turnover requirement (₱1,000 / ₱2,000 / ₱5,000 / ₱10,000). A new player must wager that much at open stakes first.</li>
               <li>This lock feature (Task 1891, Version 2.13) has been deployed to Production since the Aug 17 relaunch. Every bet analyzed here (Aug 17–31) falls after that date. So the gate was live for 100% of this window, not mid-rollout.</li>
               <li>This check replays every settled bet in the Aug 17–31 window in order, per player. It rebuilds each player's running turnover (Buy Feature spend counts as wager). It flags any locked-tier bet placed while that running total was still below the tier's requirement.</li>
@@ -603,7 +635,7 @@
               </tbody>
             </table>
             </div>
-            <div class="note warn"><b>Confirmed production bug, isolated to the ₱100 gate:</b>
+            <div class="note warn" data-note-id="monthly-14"><b>Confirmed production bug, isolated to the ₱100 gate:</b>
             <ul>
               <li>The lock feature has been live in Production since the Aug 17 relaunch. It was active for this entire window. So this is a real bug, not a rollout gap.</li>
               <li>7 of 12 players who placed a ₱100 bet (58.3%) did so before their turnover reached the required ₱1,000.</li>
@@ -617,7 +649,7 @@
 
           <div class="panel">
             <h2>Full Bet History <small>every bet placed by each flagged player, Aug 17–31 — bypass bets highlighted, 313 bets across 7 players</small></h2>
-            <div class="note">Each row is one bet, in order, with the running turnover before that bet. Rows highlighted in red and tagged <span class="pill crit">BYPASS</span> are locked-tier bets placed before the player's turnover met the requirement. Bill ID and Round No. are the same values shown in the backend's own Player Bet Record screen — search either one there and click "View" to pull up that exact round's Game Result video as independent proof.</div>
+            <div class="note" data-note-id="monthly-15">Each row is one bet, in order, with the running turnover before that bet. Rows highlighted in red and tagged <span class="pill crit">BYPASS</span> are locked-tier bets placed before the player's turnover met the requirement. Bill ID and Round No. are the same values shown in the backend's own Player Bet Record screen — search either one there and click "View" to pull up that exact round's Game Result video as independent proof.</div>
             <details class="bypass-detail">
               <summary><span class="mono">BP1_bingoplusdei6v6</span> — 2 total bets, 1 flagged as bypass (click to expand)</summary>
               <div class="table-scroll">
@@ -1011,7 +1043,7 @@
 
         <section>
           <div class="section-title"><span class="bar"></span> Weekly Trend — August 2026 (Active Weeks)</div>
-          <div class="note warn"><span class="pill crit">PARTIAL — 1 DAY</span> Week 6 (Aug 31) is a single partial day and is not a fair per-day comparator to the two full
+          <div class="note warn" data-note-id="monthly-16"><span class="pill crit">PARTIAL — 1 DAY</span> Week 6 (Aug 31) is a single partial day and is not a fair per-day comparator to the two full
           7-day weeks (Wk4, Wk5); the fair week-over-week comparison below uses <b>Week 4 vs Week 5</b>.</div>
         </section>
 
@@ -1072,12 +1104,14 @@
             </div>
             <div class="info-panel c-amber">
               <h3><span class="dot"></span> Week-over-Week Read</h3>
-              <div class="info-row"><span class="k">Growth driver</span><span class="v">New players (BC)/day rose 23.9 → 109.3 (+358%), lifting rounds/day 4.3x (1,942 → 8,310) — this is player acquisition, not existing players betting more. Likely cause: Banana Craze had no BingoPlus Loteria-category listing during Week 4 (Aug 17–23); it went live under Loteria on Aug 24, right at the start of Week 5.</span></div>
-              <div class="info-row"><span class="k">Growth driver split</span><span class="v">Volume (rounds) +327.9%, players +339.7%, avg bet/round −12.8%, RTP +3.22 pts. Volume and new-player intake move almost in lockstep and account for essentially all of the GGR gain; avg bet per round and RTP both moved in the direction that <i>reduces</i> margin, so none of Week 5's revenue growth came from bigger bets or a friendlier RTP setting — it is a pure new-player/volume story.</span></div>
-              <div class="info-row"><span class="k">RTP direction</span><span class="v">RTP improved 94.13% → 97.35% (+3.22 pts) even as volume scaled 4x — a healthy sign, opposite of the typical volume-softens-RTP pattern.</span></div>
-              <div class="info-row"><span class="k">Revenue quality</span><span class="v">GGR/day rose +68.3% (₱1,229.11 → ₱2,068.57) while avg GGR/round fell −60.3% (₱0.63 → ₱0.25) — the gain is coming almost entirely from volume, not margin.</span></div>
-              <div class="info-row"><span class="k">Watch item</span><span class="v">Week 6 (Aug 31) is only 1 day and posted 95.17% RTP on ₱74,925 — too small a sample to confirm whether Week 5's RTP improvement is holding.</span></div>
-              <div class="info-row"><span class="k">Carried into September</span><span class="v">Aug 29 and Aug 30 were the month's only negative-GGR days, and Aug 30 is flagged <b>Watch</b> in the Daily Drill-Down (−₱5,445 GGR, 150x max multiplier, ₱11,140 to a single winner) — RTP drifted outside the normal band but never crossed the real fuse-breaker Warning/Melt gates. Whether September's RTP holds near Week 5's 97.35% at continued high volume — without another Aug 29–30-style cluster — is the open question to track into next month.</span></div>
+              <ul class="read-list">
+                <li><b>Growth driver:</b> New players (BC)/day rose 23.9 → 109.3 (+358%), lifting rounds/day 4.3x (1,942 → 8,310) — this is player acquisition, not existing players betting more. Likely cause: Banana Craze had no BingoPlus Loteria-category listing during Week 4 (Aug 17–23); it went live under Loteria on Aug 24, right at the start of Week 5.</li>
+                <li><b>Growth driver split:</b> Volume (rounds) +327.9%, players +339.7%, avg bet/round −12.8%, RTP +3.22 pts. Volume and new-player intake move almost in lockstep and account for essentially all of the GGR gain; avg bet per round and RTP both moved in the direction that <i>reduces</i> margin, so none of Week 5's revenue growth came from bigger bets or a friendlier RTP setting — it is a pure new-player/volume story.</li>
+                <li><b>RTP direction:</b> RTP improved 94.13% → 97.35% (+3.22 pts) even as volume scaled 4x — a healthy sign, opposite of the typical volume-softens-RTP pattern.</li>
+                <li><b>Revenue quality:</b> GGR/day rose +68.3% (₱1,229.11 → ₱2,068.57) while avg GGR/round fell −60.3% (₱0.63 → ₱0.25) — the gain is coming almost entirely from volume, not margin.</li>
+                <li><b>Watch item:</b> Week 6 (Aug 31) is only 1 day and posted 95.17% RTP on ₱74,925 — too small a sample to confirm whether Week 5's RTP improvement is holding.</li>
+                <li><b>Carried into September:</b> Aug 29 and Aug 30 were the month's only negative-GGR days, and Aug 30 is flagged <b>Watch</b> in the Daily Drill-Down (−₱5,445 GGR, 150x max multiplier, ₱11,140 to a single winner) — RTP drifted outside the normal band but never crossed the real fuse-breaker Warning/Melt gates. Whether September's RTP holds near Week 5's 97.35% at continued high volume — without another Aug 29–30-style cluster — is the open question to track into next month.</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -1116,7 +1150,7 @@
                 <tr><td>Aug 31</td><td>8,007<span class="trend down" title="Down from previous day">▼</span></td><td>155<span class="trend down" title="Down from previous day">▼</span></td><td>133<span class="trend down" title="Down from previous day">▼</span></td><td>8.33%<span class="trend down" title="Down from previous day">▼</span></td><td>₱74,925.00<span class="trend down" title="Down from previous day">▼</span></td><td>₱71,307.50<span class="trend down" title="Down from previous day">▼</span></td><td class="green">₱3,617.50<span class="trend up" title="Up from previous day">▲</span></td><td>95.17%<span class="trend down" title="Down from previous day">▼</span></td></tr>
               </tbody>
             </table>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-17"><ul>
               <li>Aug 25 is the highest-volume day of the month (11,151 rounds) and Aug 28 the highest single-day GGR (₱8,677.50).</li>
               <li>Aug 29 and Aug 30 are the only two days all month with negative GGR (RTP above 100%), back-to-back at the very end of the ramp-up.</li>
               <li><b>D1 Retention</b> = share of the prior day's active players who returned on the given calendar day (e.g. Aug 17 → Aug 18); Aug 17 has no prior day in this window so it shows —.</li>
@@ -1137,7 +1171,7 @@
               <div class="stat-box"><div class="sv">1,143</div><div class="sl">New Players in Window</div></div>
               <div class="stat-box"><div class="sv">76.2</div><div class="sl">Avg New Players / Day</div></div>
             </div>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-18"><ul>
               <li>GGR and new-player acquisition track closely for most of the window — both step up sharply once Banana Craze goes live under BingoPlus Loteria on Aug 24, and GGR peaks on Aug 28 (₱8,677.50) as intake keeps building.</li>
               <li>The pattern breaks right after: new-player acquisition keeps climbing to its window-high of 138 on Aug 30, while GGR is negative on both Aug 29 (−₱2,893.75) and Aug 30 (−₱5,445.00) — the only two negative-GGR days in the 15-day window — before recovering to ₱3,617.50 on Aug 31.</li>
               <li>The two strongest days for new-player intake were also the two weakest for margin, worth reading alongside the RTP-outlier pattern already flagged for this stretch.</li>
@@ -1170,7 +1204,7 @@
               </tbody>
             </table>
             </div>
-            <div class="note">Daily Status is graded against the <b>real production Fuse Breaker</b> alert formula (<code>production_fuse_monitor.py</code>), not an invented scale — so it only escalates when the actual thing that pages the team would have fired. Checked over every rolling 12-hour window in the day (13 possible windows):
+            <div class="note" data-note-id="monthly-19">Daily Status is graded against the <b>real production Fuse Breaker</b> alert formula (<code>production_fuse_monitor.py</code>), not an invented scale — so it only escalates when the actual thing that pages the team would have fired. Checked over every rolling 12-hour window in the day (13 possible windows):
             <ul>
               <li><b>Warning</b> = (small-bet winning loss ≥₱20,000 OR large-bet winning loss ≥₱60,000) AND RTP ≥102% AND 12h GGR loss ≥₱20,000.</li>
               <li><b>Melt Candidate</b> = the same formula with a ≥₱80,000 12h GGR loss (bet ≤₱15 counts as “small,” above that is “large” — identical split used in production).</li>
@@ -1210,7 +1244,7 @@
               </tbody>
             </table>
             </div>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-20"><ul>
               <li><b>Worst Hour</b> = the single calendar hour (settle time) with the lowest GGR that day.</li>
               <li><b>Worst 12h Window</b> = the 12-consecutive-hour block (of the 13 possible start times within that same calendar day) with the lowest cumulative GGR — both are bounded to the calendar day and do not roll across midnight into the next day's data.</li>
               <li>Aug 30’s worst hour alone (07:00 AM) ran −₱11,320.00, and its worst 12-hour block (07:00 AM–07:00 PM) widens that to −₱12,378.75 — the deepest intraday drawdown of the month, but still well short of the ₱20,000 Warning / ₱80,000 Melt fuse-breaker gates (see Daily Risk &amp; Status above).</li>
@@ -1228,7 +1262,7 @@
           <div class="panel">
             <canvas id="hourOfDayChart" height="80"></canvas>
           </div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-21"><ul>
             <li>Two peak windows stand out: 14:00–15:00 (5,842 + 5,229 rounds) and 20:00–23:00 (5,575–6,853 rounds, the busiest single hour of the day at 22:00).</li>
             <li>The 07:00 hour is the month's single worst hour for margin at −₱10,903.75 GGR despite modest volume (1,814 rounds) — a 139.66% hourly RTP outlier worth a template-mix check.</li>
             <li>Early hours also swing: 03:00 spikes to +₱8,857.50 GGR while 16:00 dips to −₱3,462.50.</li>
@@ -1246,7 +1280,7 @@
               <canvas id="avgBetChart"></canvas>
             </div>
           </div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-22"><ul>
             <li>Monday is the busiest weekday by round count (17,117 rounds, ₱8,796.25 GGR).</li>
             <li>Tuesday runs a similar volume tier (12,464 rounds) but the thinnest GGR margin of any weekday (₱621.25, 99.44% RTP) — high volume at almost break-even.</li>
             <li>Saturday and Sunday are the only two weekdays with negative GGR (−₱2,105.00 and −₱1,855.00, both above 100% RTP), a weekend softness worth monitoring.</li>
@@ -1276,7 +1310,7 @@
               <div class="stat-box"><div class="sv">65.87</div><div class="sl">Mean rounds/player</div></div>
               <div class="stat-box"><div class="sv">14</div><div class="sl">Whale-tier players (₱10K+)</div></div>
             </div>
-            <div class="note">This page covers the full active player base for the month: who played, what they were worth, and
+            <div class="note" data-note-id="monthly-23">This page covers the full active player base for the month: who played, what they were worth, and
             who came back. See New Player &amp; Churn Analysis for acquisition/origin breakdowns.</div>
           </div>
         </section>
@@ -1319,14 +1353,14 @@
                   <tr><td>Aug 31</td><td>168</td><td>14</td><td>8.33%</td></tr>
                 </tbody>
               </table>
-              <div class="note"><ul>
+              <div class="note" data-note-id="monthly-24"><ul>
                 <li>Retention = that day's "Returned From Prior Day" count ÷ the prior day's total active players.</li>
                 <li>Aug 17 is excluded (no prior day in the relaunch window to measure against).</li>
                 <li>Return behavior trends upward as the relaunch matured, from single digits in the first week to a steady 8–10% by late August.</li>
               </ul></div>
             </div>
           </div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-25"><ul>
             <li>Survival curve is built from all 79,769 August order rows across all 1,211 players (not just new signups — see New Player &amp; Churn Analysis for the acquisition-cohort view).</li>
             <li>Half the roster (48.55%) plays past round 30, but it thins out fast after that: only 14.12% reach round 100, and just 0.74% (9 players) reach round 1,000+.</li>
             <li>Status is the backend's live <code>playerStatus</code> flag per player: <b>771 active (63.67%)</b> vs. <b>440 inactive (36.33%)</b> as of the report date.</li>
@@ -1355,7 +1389,7 @@
               </table>
             </div>
           </div>
-          <div class="note warn"><b>Concentration risk:</b><ul>
+          <div class="note warn" data-note-id="monthly-26"><b>Concentration risk:</b><ul>
             <li>The top 10% of players by spend account for <b>68.12%</b> of total bet volume, but only <b>10.62%</b> of GGR by absolute movement — bet share and GGR share are not proportional at the top of the base.</li>
             <li>Just <b>14 whale players</b> (₱10,000+ bet, 1.16% of players) contributed 28.51% of all volume and <b>₱12,757.50</b> of GGR.</li>
             <li>Revenue is heavily dependent on a small cohort — worth monitoring for retention/VIP treatment.</li>
@@ -1415,7 +1449,7 @@
               </tbody>
             </table>
             </div>
-            <div class="note">Status/Active Days/Lifetime figures are pulled live from the backend's player lifecycle report (<code>queryUserLifeCycleReportPage</code>) and are unscoped by date — "Lifetime" covers each player's full history on this account, not just August.
+            <div class="note" data-note-id="monthly-27">Status/Active Days/Lifetime figures are pulled live from the backend's player lifecycle report (<code>queryUserLifeCycleReportPage</code>) and are unscoped by date — "Lifetime" covers each player's full history on this account, not just August.
             <ul>
               <li>Two names stand out against their in-month numbers: <span class="mono">BP1_bingoplusyrvaeh</span> (this month's #5 loser at −₱1,557.50) has 50 lifetime active days and ₱1.03M in lifetime bet volume at a near-breakeven 100.13% lifetime RTP — a long-tenured high-volume player, not a one-off.</li>
               <li><span class="mono">BP1_lp8t3lb94</span> (#2 loser at −₱4,345.00) is up lifetime (111.19% RTP on ₱176,000 bet) despite the rough August.</li>
@@ -1438,7 +1472,7 @@
                 <tr><td class="mono">BP1_lpu7i0jeq</td><td>Aug 30</td><td>₱100</td><td>₱2,075.00</td><td class="green">+₱1,975.00</td><td>20.75x</td></tr>
               </tbody>
             </table>
-            <div class="note">Top 6 of 10 shown for brevity. The month's biggest single-round wins cluster heavily around one
+            <div class="note" data-note-id="monthly-28">Top 6 of 10 shown for brevity. The month's biggest single-round wins cluster heavily around one
             player (BP1_bingoplus3gte7l, three of the top six) triggering Bonus rounds on Aug 30.</div>
           </div>
         </section>
@@ -1486,7 +1520,7 @@
               <div class="stat-box"><div class="sv">₱4.09</div><div class="sl">Avg net after first 20 rounds</div></div>
               <div class="stat-box"><div class="sv">₱165.22</div><div class="sl">Avg bet after first 20 rounds</div></div>
             </div>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-29"><ul>
               <li>This full-month source reports the First-20-Round Experience as a single month-level aggregate rather than a per-day breakdown.</li>
               <li>729 of the month's 1,211 total users (60.2%) reached 20 rounds; of those, 62.14% were net-negative at that point, averaging +₱4.09 net and ₱165.22 bet.</li>
               <li>Observed stop behavior is in-period only and is not permanent churn.</li>
@@ -1541,7 +1575,7 @@
               <div class="info-row"><span class="k">Biggest drop-off point</span><span class="v red">Round 30 → 50 (17.4 pts)</span></div>
             </div>
           </div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-30"><ul>
             <li>The steepest single drop on a percentage-point basis is round 30 → 50 (17.4 points, 48.55% → 31.13%), narrowly ahead of round 1 → 5 (16.68 points, 100% → 83.32%).</li>
             <li>Reading both together: a meaningful share of players never make it past their first handful of rounds, and a second, comparably-sized group survives the early rounds only to churn as losses accumulate on the way to round 50 — consistent with the 62.14% negative-after-20-rounds finding above.</li>
           </ul></div>
@@ -1587,7 +1621,7 @@
               <div class="stat-box flag"><div class="sv">337</div><div class="sl">Gone inactive (35.5%)</div></div>
               <div class="stat-box flag"><div class="sv">857</div><div class="sl">One-and-done, single active day (90.4%)</div></div>
             </div>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-31"><ul>
               <li>Pulled directly from the backend's per-player User Lifecycle API (<code>queryUserLifeCycleReportPage</code>), which tracks true/false return flags for each of the 948 Game Engine new players individually, not a cohort-date aggregate.</li>
               <li>Retention rates only count players old enough to have reached that milestone as of the data pull (Sept 1, 2026): 944 players eligible for D1, 845 for D2, 736 for D3, and 318 for D7.</li>
               <li>D15 and D30 aren't reportable yet — the Aug 17 relaunch is under 30 days old, so almost no one in the cohort has had the chance to reach that window.</li>
@@ -1629,7 +1663,7 @@
                 <tr><td>9</td><td>2,122</td><td>2.66%</td><td>727</td><td>₱16,435.00</td><td>₱21,357.50</td><td class="amber">129.95%</td></tr>
               </tbody>
             </table>
-            <div class="note"><ul>
+            <div class="note" data-note-id="monthly-32"><ul>
               <li>Template 4 carries the bulk of volume (43.63% of rounds) at a healthy 98.54% RTP.</li>
               <li>Template 8 stands out as a house-favored outlier (68.91% RTP on 4,728 rounds).</li>
               <li>Templates 7 and 9 swing player-favored (110.97% and 129.95% RTP) on smaller samples (2,599 and 2,122 rounds) — worth monitoring whether this is variance or a pattern that needs correcting.</li>
@@ -1657,7 +1691,7 @@
               <div class="info-row"><span class="k">5x+</span><span class="v green">2,934 (3.68%)</span></div>
             </div>
           </div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-33"><ul>
             <li>Multiplier buckets reconcile exactly to 79,769 settled rounds: 55,822 + 10,808 + 4,372 + 5,833 + 1,286 + 1,379 + 235 + 28 + 6 = 79,769.</li>
             <li>GGR turns player-favored (negative for the house) at every bucket above 0.01–1x — this is expected variance from how multiplier-based payout works, not an error.</li>
           </ul></div>
@@ -1678,7 +1712,7 @@
               <div class="stat-box"><div class="sv">64</div><div class="sl">50–100x (0.08%)</div></div>
               <div class="stat-box"><div class="sv">11</div><div class="sl">100x+ (0.01%), none past 500x</div></div>
             </div>
-            <div class="note">Pulled from the backend's own win-distribution report (<code>queryWinningDistributionPage</code> / <code>...DetailPage</code>), aggregated across all 16 bet denominations (₱5–₱2,000).<ul>
+            <div class="note" data-note-id="monthly-34">Pulled from the backend's own win-distribution report (<code>queryWinningDistributionPage</code> / <code>...DetailPage</code>), aggregated across all 16 bet denominations (₱5–₱2,000).<ul>
               <li>Overall win rate for the month: 30.02% (23,947 of 79,769 bets returned something).</li>
               <li>This report's 0x/no-win bucket matches the round-derived breakdown above exactly (55,822 rounds both ways) — a strong cross-check on the base loss rate — but its multiplier bands above 0x are defined natively by the backend (R=0, 0&lt;R&lt;1, 1≤R&lt;5, etc.) and don't line up boundary-for-boundary with the finer custom buckets in the panel above, so the two shouldn't be summed together.</li>
               <li>The headline finding either way is the same: 81.97% of all wins land under 5x, and only 2.59% of all bets clear 10x — nothing this month reached the 500x or 1000x+ tier.</li>
@@ -1706,12 +1740,12 @@
               <canvas id="betTypeChart"></canvas>
             </div>
           </div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-35"><ul>
             <li>Bonus Trigger Round is real and material — 1,841 rounds (2.31% of volume) triggered a nonzero "other payout" on top of the base bet, contributing ₱224,427.50 of payout from only ₱17,570.00 of bet in those rounds.</li>
             <li>That payout-to-bet ratio (1,277.33%) is expected, not an error: a Bonus Trigger Round's payout is driven by the feature outcome, not by the small base stake that triggered it, so per-category RTP is not comparable to the blended RTP.</li>
             <li>Buy Feature rounds (293, 0.37%) carry a much larger average stake (₱202.05/round vs ₱8.91 for Normal Rounds) and actually run a healthier RTP (81.45%) than Normal Rounds (67.81%) this month.</li>
           </ul></div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-36"><ul>
             <li>Feature reconciliation: Normal Rounds (77,635) + Bonus Trigger Round (1,841) + Mission Feature (0) + Buy Feature (293) = 79,769 settled rounds. Total settled rounds = 79,769. Result: <b class="green">PASSED</b>.</li>
             <li>Bonus Trigger Round is identified by NORMAL_BET rows with a nonzero other-payout amount; Normal Rounds is NORMAL_BET with other-payout zero or blank; Buy Feature is the BUY_FEATURE bet type; Mission requires an explicit confirmed mission signal, which was not observed in any row this month.</li>
           </ul></div>
@@ -1738,7 +1772,7 @@
                 <div class="info-row"><span class="k">Target adjustRtpMin–Max bands</span><span class="v">70–95% and 110–150%+ (some uncapped)</span></div>
               </div>
             </div>
-            <div class="note">This fills the gap flagged elsewhere in this report — the per-round dynamic-RTP adjust-type breakdown is now available live from the backend.<ul>
+            <div class="note" data-note-id="monthly-37">This fills the gap flagged elsewhere in this report — the per-round dynamic-RTP adjust-type breakdown is now available live from the backend.<ul>
               <li>DAILY and CUMULATIVE dominate (83.2% of all 2,312 events) and both run RTP well above 300%: these are compensation events that push payout up once the rolling RTP drifts below a 40–70% trigger threshold, and they're the same underlying mechanic behind the Bonus Trigger Round RTP outlier (1,277.33%) already flagged in the panel above.</li>
               <li>DISCARD and REROLL events run close to or below 100% RTP and read as adjustments that were calculated but not fully paid out.</li>
               <li>Adjust events touch only 2.3% of the month's bet volume but 7.1% of its payout — a small, engineered slice of rounds doing disproportionate work to hold the blended RTP near the 97% target — and 64.7% of the month's players hit at least one of them.</li>
@@ -1757,7 +1791,7 @@
               <canvas id="outcomeSplitChart"></canvas>
             </div>
           </div>
-          <div class="note"><ul>
+          <div class="note" data-note-id="monthly-38"><ul>
             <li>₱5 is by far the most common stake (56,685 rounds, 71.06% of volume), confirming the base is dominated by micro-stakes casual play; denominations of ₱500+ combine for fewer than 40 rounds all month.</li>
             <li>By outcome, 78.34% of rounds are a player loss, 16.47% a player win, and 5.18% a push (refund) — in line with the 96.52% blended RTP.</li>
           </ul></div>
@@ -2690,5 +2724,111 @@ const pageCharts = {
 };
 </script>
 
+<script>
+/* ---- injected: editable analysis blocks (self-contained, English only) ----
+   Edits are saved to this browser's localStorage, and fall back to a published
+   note_overrides.json fetched alongside the file so an edit can be shared with
+   other readers without rebuilding the report. */
+(function () {
+  var notes = Array.prototype.slice.call(document.querySelectorAll('.note[data-note-id]'));
+  if (!notes.length) return;
+  var STORE_KEY = 'bc_note_edits_monthly';
+  var REMOTE = {};
+
+  function loadStore() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch (e) { return {}; }
+  }
+  function saveStore(s) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (e) {}
+  }
+
+  var entries = notes.map(function (note) {
+    var id = note.getAttribute('data-note-id');
+
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'note-edit-btn'; btn.innerHTML = '&#9998;';
+    btn.title = 'Edit this analysis';
+
+    var view = document.createElement('div');
+    view.className = 'note-view';
+    while (note.firstChild) view.appendChild(note.firstChild);
+
+    var override = document.createElement('div');
+    override.className = 'note-override-view'; override.style.display = 'none';
+
+    var ta = document.createElement('textarea');
+    ta.className = 'note-textarea';
+
+    function mkBtn(label) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'note-btn'; b.textContent = label; return b;
+    }
+    var save = mkBtn('Save'), cancel = mkBtn('Cancel'), reset = mkBtn('Reset');
+    var actions = document.createElement('div');
+    actions.className = 'note-edit-actions';
+    actions.appendChild(save); actions.appendChild(cancel); actions.appendChild(reset);
+
+    var panel = document.createElement('div');
+    panel.className = 'note-edit-panel'; panel.style.display = 'none';
+    panel.appendChild(ta); panel.appendChild(actions);
+
+    note.appendChild(btn); note.appendChild(view);
+    note.appendChild(override); note.appendChild(panel);
+
+    function currentText() {
+      var s = loadStore();
+      if (typeof s[id] === 'string') return s[id];
+      if (typeof REMOTE[id] === 'string') return REMOTE[id];
+      return null;
+    }
+    function apply() {
+      panel.style.display = 'none';
+      btn.classList.remove('editing');
+      var t = currentText();
+      if (t !== null) {
+        override.textContent = t;
+        override.style.display = ''; view.style.display = 'none';
+      } else {
+        override.style.display = 'none'; view.style.display = '';
+      }
+    }
+    function open() {
+      var t = currentText();
+      ta.value = t !== null ? t : view.textContent.trim();
+      view.style.display = 'none'; override.style.display = 'none';
+      panel.style.display = ''; btn.classList.add('editing');
+      ta.focus();
+    }
+    btn.addEventListener('click', function () {
+      if (panel.style.display === 'none') open(); else apply();
+    });
+    save.addEventListener('click', function () {
+      var s = loadStore(); s[id] = ta.value; saveStore(s); apply();
+    });
+    cancel.addEventListener('click', apply);
+    reset.addEventListener('click', function () {
+      var s = loadStore(); delete s[id]; saveStore(s); apply();
+    });
+    return apply;
+  });
+
+  entries.forEach(function (fn) { fn(); });
+
+  fetch('note_overrides_monthly.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) { if (d && typeof d === 'object') { REMOTE = d; entries.forEach(function (f) { f(); }); } })
+    .catch(function () {});
+
+  window.bcCopyEdits = function () {
+    var s = loadStore(), n = Object.keys(s).length;
+    var txt = JSON.stringify(s, null, 1);
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).catch(function () {});
+    console.log(txt);
+    alert(n ? n + ' edited note(s) copied. Save as note_overrides_monthly.json next to this file.'
+            : 'No edits on this browser yet.');
+    return txt;
+  };
+})();
+</script>
 </body>
 </html>
