@@ -55,9 +55,16 @@
   .main{flex:1; min-width:0; display:flex; flex-direction:column;}
 
   .topbar{
+    position:sticky; top:0; z-index:60;
     background:linear-gradient(95deg,var(--navy),var(--navy2));
     color:#fff; padding:12px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+    box-shadow:0 2px 10px rgba(10,20,45,0);
+    transition:box-shadow .18s ease;
   }
+  /* Only lift off the page once it is actually overlapping content -- a shadow
+     sitting there at scroll position 0 reads as a rendering artefact. The
+     .stuck class is toggled in scripts.js. */
+  .topbar.stuck{box-shadow:0 4px 16px rgba(10,20,45,.34);}
   .topbar h1{margin:0; font-size:15.5px; font-weight:800; letter-spacing:-.01em;}
   .topbar .sub{font-size:10.5px; color:#9FB0D6; margin-top:1px;}
   .topbar .badge{
@@ -24452,6 +24459,27 @@ const pageCharts = {
   } else {
     root.classList.add('revealed');
   }
+})();
+
+/* ---------- Sticky top bar: shadow only once it actually overlaps content ----
+   position:sticky does the holding; this only toggles the drop shadow so the
+   bar looks flat at rest and lifted while content slides under it.
+
+   A sentinel + IntersectionObserver was tried first and dropped: IO does not
+   report while the page is not being painted (background tab, hidden pane), so
+   the shadow silently never appeared. A passive scroll listener comparing one
+   number is cheaper than the observer machinery anyway, and always fires. ----- */
+(function () {
+  const bar = document.querySelector('.topbar');
+  if (!bar) return;
+  let on = false;
+  function sync() {
+    const should = window.scrollY > 4;
+    if (should !== on) { on = should; bar.classList.toggle('stuck', should); }
+  }
+  addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync, { passive: true });
+  sync();
 })();
 
 </script>
