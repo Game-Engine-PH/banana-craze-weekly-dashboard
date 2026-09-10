@@ -436,9 +436,40 @@
     box-shadow:0 6px 16px rgba(15,25,50,.28);
   }
 
+  /* ---------- Report themes ----------
+     Weekly and monthly carry the same content and the same layout, so the only
+     reliable way to tell at a glance which one is open is the chrome's colour.
+     Themes swap accent variables only -- never structure -- so nothing has to
+     be re-learned when switching between them. */
+  body.theme-weekly{}                                  /* navy/blue — the default */
+  body.theme-monthly{
+    --navy:#2B1B4D; --navy2:#4A2E7A; --blue:#8B5CF6; --blue2:#A78BFA;
+  }
+  body.theme-gamezone{
+    --navy:#0B3D2E; --navy2:#12604A; --blue:#0F9D68; --blue2:#34C48A;
+  }
+  /* A visible spine down the page edge, so the theme is obvious even when the
+     top bar is scrolled past on a small screen. */
+  body.theme-monthly .sidebar,
+  body.theme-gamezone .sidebar{box-shadow:inset -3px 0 0 var(--blue);}
+
+  /* Banner for a report built on synthetic data — deliberately loud, because
+     mistaking sample numbers for production ones is the expensive failure. */
+  .sample-banner{
+    margin:0 0 14px; padding:11px 16px; border-radius:9px;
+    background:repeating-linear-gradient(45deg,#FFF3D6 0 14px,#FFEBBA 14px 28px);
+    border:1.5px solid #E0A83C; color:#6B4700; font-weight:800; font-size:12.5px;
+    display:flex; align-items:center; gap:9px; letter-spacing:.01em;
+  }
+  .sample-banner .tag{
+    background:#B4560F; color:#fff; padding:2px 9px; border-radius:5px;
+    font-size:10.5px; font-weight:900; letter-spacing:.08em; white-space:nowrap;
+  }
+  .sample-banner .body{font-weight:600; line-height:1.45;}
+
 </style>
 </head>
-<body>
+<body class="theme-weekly">
 
 <div class="app">
 
@@ -20689,12 +20720,7 @@
             <div class="panel">
               <table>
                 <thead><tr><th><span class="i18n" data-i18n="roster.table.tier">Tier</span></th><th><span class="i18n" data-i18n="overview.table.players">Players</span></th><th><span class="i18n" data-i18n="roster.table.pct_players">% of Players</span></th><th><span class="i18n" data-i18n="roster.table.total_bet">Total Bet</span></th><th><span class="i18n" data-i18n="roster.table.pct_bet">% of Bet</span></th><th><span class="i18n" data-i18n="overview.table.ggr">GGR</span></th><th><span class="i18n" data-i18n="overview.table.rtp">RTP</span></th><th><span class="i18n" data-i18n="roster.table.avg_rounds">Avg Rounds</span></th></tr></thead>
-                <tbody>
-                  <tr><td><₱100 (<span class="i18n" data-i18n="roster.tier.micro">Micro</span>)</td><td>338</td><td>34.67%</td><td>₱11,710.00</td><td>1.68%</td><td class="green">₱921.25</td><td class="green">92.13%</td><td>6.70</td></tr>
-                  <tr><td>₱100-₱500 (<span class="i18n" data-i18n="roster.tier.casual">Casual</span>)</td><td>427</td><td>43.79%</td><td>₱102,665.00</td><td>14.77%</td><td class="green">₱10,838.75</td><td class="green">89.44%</td><td>38.15</td></tr>
-                  <tr><td>₱500-₱2,000 (<span class="i18n" data-i18n="roster.tier.regular">Regular</span>)</td><td>152</td><td>15.59%</td><td>₱136,120.00</td><td>19.58%</td><td class="green">₱5,238.75</td><td class="green">96.15%</td><td>123.22</td></tr>
-                  <tr><td>₱2,000-₱10,000 (<span class="i18n" data-i18n="roster.tier.high">High</span>)</td><td>50</td><td>5.13%</td><td>₱203,805.00</td><td>29.31%</td><td class="green">₱6,155.00</td><td class="green">96.98%</td><td>411.38</td></tr>
-                  <tr class="hl"><td>₱10,000+ (<span class="i18n" data-i18n="roster.tier.whale">Whale</span>)</td><td>8</td><td>0.82%</td><td>₱241,020.00</td><td>34.66%</td><td class="red">−₱1,263.75</td><td class="red">100.52%</td><td>970.12</td></tr>
+                <tbody><tr><td><₱100 (<span class="i18n" data-i18n="roster.tier.micro">Micro</span>)</td><td>338</td><td>34.67%</td><td>₱11,710.00</td><td>1.68%</td><td class="green">₱921.25</td><td class="green">92.13%</td><td>6.70</td></tr><tr><td>₱100-₱500 (<span class="i18n" data-i18n="roster.tier.casual">Casual</span>)</td><td>427</td><td>43.79%</td><td>₱102,665.00</td><td>14.77%</td><td class="green">₱10,838.75</td><td class="green">89.44%</td><td>38.15</td></tr><tr><td>₱500-₱2,000 (<span class="i18n" data-i18n="roster.tier.regular">Regular</span>)</td><td>152</td><td>15.59%</td><td>₱136,120.00</td><td>19.58%</td><td class="green">₱5,238.75</td><td class="green">96.15%</td><td>123.22</td></tr><tr><td>₱2,000-₱10,000 (<span class="i18n" data-i18n="roster.tier.high">High</span>)</td><td>50</td><td>5.13%</td><td>₱203,805.00</td><td>29.31%</td><td class="green">₱6,155.00</td><td class="green">96.98%</td><td>411.38</td></tr><tr class="hl"><td>₱10,000+ (<span class="i18n" data-i18n="roster.tier.whale">Whale</span>)</td><td>8</td><td>0.82%</td><td>₱241,020.00</td><td>34.66%</td><td class="red">−₱1,263.75</td><td class="red">100.52%</td><td>970.12</td></tr>
                 </tbody>
               </table>
             </div>
