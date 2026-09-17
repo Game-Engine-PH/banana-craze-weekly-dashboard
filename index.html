@@ -2,98 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="0; url=reports/index.html">
+<link rel="canonical" href="reports/index.html">
 <title>Game Engine — Reports</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  *{box-sizing:border-box;}
-  body{margin:0;font-family:'Inter',Arial,sans-serif;background:#EEF1F7;color:#182236;
-       -webkit-font-smoothing:antialiased;}
-  .hero{background:linear-gradient(105deg,#0F1E3D,#1B3566);color:#fff;padding:38px 28px 42px;}
-  .hero-inner{max-width:1120px;margin:0 auto;}
-  .eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-           color:#8FA3C9;margin-bottom:9px;}
-  h1{margin:0 0 8px;font-size:27px;font-weight:900;letter-spacing:-.02em;}
-  .lede{margin:0;color:#B9C4E0;font-size:13.5px;max-width:660px;line-height:1.55;}
-  main{max-width:1120px;margin:-24px auto 0;padding:0 28px 44px;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;}
-  .card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;
-        border:1px solid #E4E8F1;border-radius:13px;padding:0 20px 20px;overflow:hidden;
-        box-shadow:0 1px 3px rgba(15,30,60,.06);transition:transform .16s ease,box-shadow .16s ease;
-        position:relative;}
-  /* The colour band is the whole point of the hub: weekly, monthly and
-     GameZone carry the same layout, so the accent is what tells them apart. */
-  .card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;
-                background:linear-gradient(90deg,var(--a),var(--b));}
-  .card:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(15,30,60,.16);}
-  .card-top{display:flex;align-items:center;gap:9px;margin:24px 0 12px;}
-  .kind{font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;
-        color:#fff;background:var(--accent);padding:3px 9px;border-radius:5px;}
-  .badge{font-size:9.5px;font-weight:800;letter-spacing:.08em;color:#3C7A55;background:#E6F5EC;
-         border:1px solid #BFE3CD;padding:2.5px 8px;border-radius:20px;}
-  .badge.sample{color:#8A5200;background:#FFF3D6;border-color:#E8C583;}
-  h2{margin:0 0 3px;font-size:17px;font-weight:800;letter-spacing:-.01em;}
-  .period{font-size:11.5px;font-weight:700;color:var(--accent);margin-bottom:11px;}
-  .card p{margin:0 0 18px;font-size:12.5px;line-height:1.6;color:#5C6784;flex:1;}
-  .go{font-size:12px;font-weight:800;color:var(--accent);display:inline-flex;align-items:center;gap:6px;}
-  .card:hover .arrow{transform:translateX(3px);}
-  .arrow{transition:transform .16s ease;display:inline-block;}
-  .is-sample{background:repeating-linear-gradient(135deg,#fff 0 22px,#FFFDF6 22px 44px);}
-  footer{max-width:1120px;margin:0 auto;padding:0 28px 40px;color:#6B7590;font-size:11.5px;line-height:1.6;}
-  footer b{color:#182236;}
-</style>
 </head>
 <body>
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">Game Engine · Product BP1</div>
-      <h1>Game Performance Reports</h1>
-      <p class="lede">Each report opens on its own colour so you always know which one you are
-      reading — the layout is deliberately identical between them.</p>
-    </div>
-  </div>
-  <main>
-    <div class="grid">
-      <a class="card" href="reports/banana_craze_weekly_report_2026-W36.html"
-         style="--a:#0F1E3D;--b:#1B3566;--accent:#118DFF">
-        <div class="card-top">
-          <span class="kind">Weekly</span>
-          <span class="badge">LIVE DATA</span>
-        </div>
-        <h2>Banana Craze — Weekly</h2>
-        <div class="period">Week 36, 2026 · Aug 31 – Sep 6</div>
-        <p>Full weekly review: daily drill-down, per-player round-by-round graphs, RTP heatmap, player value tiers and math performance.</p>
-        <span class="go">Open report <span class="arrow">→</span></span>
-      </a>
-      <a class="card" href="monthly-august-2026.html"
-         style="--a:#2B1B4D;--b:#4A2E7A;--accent:#8B5CF6">
-        <div class="card-top">
-          <span class="kind">Monthly</span>
-          <span class="badge">LIVE DATA</span>
-        </div>
-        <h2>Banana Craze — Monthly</h2>
-        <div class="period">August 2026 · Aug 1 – 31</div>
-        <p>Month-level view of the same product: totals, trend, player mix and math performance across the full month.</p>
-        <span class="go">Open report <span class="arrow">→</span></span>
-      </a>
-      <a class="card is-sample" href="reports/gamezone_weekly_report_2026-W36_SAMPLE.html"
-         style="--a:#0B3D2E;--b:#12604A;--accent:#0F9D68">
-        <div class="card-top">
-          <span class="kind">Weekly</span>
-          <span class="badge sample">SAMPLE DATA</span>
-        </div>
-        <h2>GameZone — Weekly</h2>
-        <div class="period">Week 36, 2026 · sample</div>
-        <p>Layout preview for the incoming GameZone titles. Built from synthetic orders so the report shape can be reviewed before real data exists.</p>
-        <span class="go">Open report <span class="arrow">→</span></span>
-      </a>
-    </div>
-  </main>
-  <footer>
-    Updated 10 Sep 2026 · Settled transactions only, PHP.
-    <b>GameZone is a layout sample</b> — its figures are synthetic and no GameZone data has been
-    collected yet.
-  </footer>
+<p>Redirecting to the <a href="reports/index.html">reports hub</a>…</p>
 </body>
 </html>

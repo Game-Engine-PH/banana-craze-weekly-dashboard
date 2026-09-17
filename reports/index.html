@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Engine — Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Inter',Arial,sans-serif;background:#EEF1F7;color:#182236;
+       -webkit-font-smoothing:antialiased;}
+  .hero{background:linear-gradient(105deg,#0F1E3D,#1B3566);color:#fff;padding:38px 28px 42px;}
+  .hero-inner{max-width:1000px;margin:0 auto;}
+  .eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+           color:#8FA3C9;margin-bottom:9px;}
+  h1{margin:0 0 8px;font-size:27px;font-weight:900;letter-spacing:-.02em;}
+  .lede{margin:0;color:#B9C4E0;font-size:13.5px;max-width:660px;line-height:1.55;}
+  main{max-width:1000px;margin:-24px auto 0;padding:0 28px 60px;}
+
+  .picker{background:#fff;border:1px solid #E4E8F1;border-radius:14px;
+          box-shadow:0 1px 3px rgba(15,30,60,.06);padding:26px 28px 30px;}
+  .step{margin-bottom:20px;}
+  .step:last-child{margin-bottom:0;}
+  .step-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+              font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+              color:#6B7590;margin-bottom:10px;}
+
+  /* Each pill press acts immediately: Month narrows which weeks are shown
+     below it (cross-filter, no navigation of its own); Week opens its report
+     right away. Nothing here is a dead-end "select then click elsewhere". */
+  .slicer{display:flex;flex-wrap:wrap;gap:9px;}
+  .sopt{display:inline-block;text-decoration:none;appearance:none;border:none;
+        font-family:inherit;font-size:13.5px;font-weight:700;padding:9px 18px;
+        border-radius:999px;color:#fff;background:var(--sc);cursor:pointer;
+        opacity:.5;transition:all .14s ease;}
+  .sopt:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .sopt.active{opacity:1;box-shadow:0 2px 6px rgba(15,30,60,.18);}
+  #weekRow .sopt{opacity:1;}
+  .sopt .sub{display:block;font-size:10.5px;font-weight:600;opacity:.82;margin-top:1px;}
+  .sopt.disabled{background:#E7EAF2;color:#8A93AC;cursor:not-allowed;}
+  .sopt.disabled:hover{filter:none;transform:none;}
+
+  footer{max-width:1000px;margin:30px auto 0;padding:0 28px 40px;color:#6B7590;font-size:11.5px;line-height:1.6;}
+  footer b{color:#182236;}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Game Engine · Product BP1</div>
+      <h1>Game Performance Reports</h1>
+      <p class="lede">Pindutin ang buwan para makita lang ang mga linggo nito, tapos pindutin ang linggo para dumiretso sa report.
+      Press a month to narrow the weeks below to just that month, then press a week to open its report.</p>
+    </div>
+  </div>
+  <main>
+    <div class="picker">
+      <div class="step">
+        <div class="step-label"><span>Buwan / Month</span></div>
+        <div class="slicer" id="monthRow">
+          <button class="sopt" data-month="2026-08" style="--sc:#8B5CF6">August<span class="sub">Aug 1–31</span></button>
+          <button class="sopt" data-month="2026-09" style="--sc:#8B5CF6">September<span class="sub">Sep 1–13 (MTD)</span></button>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-label"><span>Linggo / Week</span></div>
+        <div class="slicer" id="weekRow">
+          <a class="sopt" data-month="2026-08" href="banana_craze_weekly_report_2026-W34.html" style="--sc:#118DFF">Week 34<span class="sub">Aug 17–23</span></a>
+          <span class="sopt disabled" data-month="2026-08" title="Blocked: 1,794 players&#x27; new/returning history is not yet cached locally. Needs a Hermes-run collection before this can be rebuilt without a live backend call.">Week 35<span class="sub">Not yet available</span></span>
+          <a class="sopt" data-month="2026-09" href="banana_craze_weekly_report_2026-W36.html" style="--sc:#118DFF">Week 36<span class="sub">Aug 31–Sep 6</span></a>
+          <a class="sopt" data-month="2026-09" href="banana_craze_weekly_report_2026-W37.html" style="--sc:#118DFF">Week 37<span class="sub">Sep 7–13</span></a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    Updated 16 Sep 2026 · Settled transactions only, PHP.
+    Grayed-out weeks are blocked -- hover for the reason. They need a per-player history
+    backfill before they can be rebuilt safely.
+  </footer>
+
+<script>
+const monthBtns = document.querySelectorAll('#monthRow .sopt');
+const weekPills = document.querySelectorAll('#weekRow .sopt');
+
+function setMonth(key) {
+  monthBtns.forEach(b => b.classList.toggle('active', b.dataset.month === key));
+  weekPills.forEach(w => { w.style.display = (w.dataset.month === key) ? '' : 'none'; });
+}
+
+monthBtns.forEach(b => b.addEventListener('click', () => setMonth(b.dataset.month)));
+setMonth('2026-09');
+</script>
+</body>
+</html>
