@@ -4279,6 +4279,10 @@ function bcShortDate(iso) {
   const dt = new Date(iso + 'T00:00:00');
   return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
+function bcRound2(v) {
+  return v == null ? v : Math.round(v * 100) / 100;
+}
+const SITE_STANDARD_RTP = 98.3;
 function mkSiteDailyCombo(canvasId, labels, bet, payout, rtp) {
   return mkChart(canvasId, {
     data: {
@@ -4287,6 +4291,7 @@ function mkSiteDailyCombo(canvasId, labels, bet, payout, rtp) {
         { type: 'bar', label: 'Bet Amount (₱)', data: bet, backgroundColor: '#118DFF', yAxisID: 'y', borderRadius: 3, barPercentage: .85, categoryPercentage: .9 },
         { type: 'bar', label: 'Payout (₱)', data: payout, backgroundColor: '#0F9DA8', yAxisID: 'y', borderRadius: 3, barPercentage: .85, categoryPercentage: .9 },
         { type: 'line', label: 'RTP (%)', data: rtp, borderColor: '#F2A93B', backgroundColor: '#F2A93B', yAxisID: 'y1', tension: .3, pointRadius: 2, borderWidth: 2 },
+        { type: 'line', label: `Target RTP (${SITE_STANDARD_RTP}%)`, data: labels.map(() => SITE_STANDARD_RTP), borderColor: '#9AA3BC', yAxisID: 'y1', pointRadius: 0, borderWidth: 1.5, borderDash: [6,4] },
       ],
     },
     options: {
@@ -4295,7 +4300,7 @@ function mkSiteDailyCombo(canvasId, labels, bet, payout, rtp) {
       scales: {
         x: { ticks: { color: '#6B7590' }, grid: { display: false } },
         y: { position: 'left', ticks: { color: '#6B7590', callback: v => '₱' + v.toLocaleString() }, grid: { color: '#E4E8F1' } },
-        y1: { position: 'right', ticks: { color: '#9A6A0A', callback: v => v + '%' }, grid: { drawOnChartArea: false } },
+        y1: { position: 'right', ticks: { color: '#9A6A0A', callback: v => v.toFixed(2) + '%' }, grid: { drawOnChartArea: false } },
       },
     },
   });
@@ -4304,7 +4309,8 @@ const sitesDailyGeneralChart = mkSiteDailyCombo('sitesDailyGeneralChart', dLabel
 const sitesDailySiteCharts = (D.sites.history || []).map(s => {
   const rows = s.daily || [];
   const labels = rows.map(d => bcShortDate(d.date));
-  return mkSiteDailyCombo('sitesDailyChart-' + s.site, labels, rows.map(d => d.bet), rows.map(d => d.payout), rows.map(d => d.rtp));
+  return mkSiteDailyCombo('sitesDailyChart-' + s.site, labels,
+    rows.map(d => bcRound2(d.bet)), rows.map(d => bcRound2(d.payout)), rows.map(d => bcRound2(d.rtp)));
 });
 
 /* ---------- Daily combo chart ---------- */
