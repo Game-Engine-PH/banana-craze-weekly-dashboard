@@ -763,7 +763,7 @@
               </ul>
             </div>
             <div class="stat-strip">
-              <div class="stat-box"><div class="sv">₱8,604</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.ggr">Full-Week GGR</span></div></div>
+              <div class="stat-box"><div class="sv">₱8,603.75</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.ggr">Full-Week GGR</span></div></div>
               <div class="stat-box"><div class="sv">94.13%</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.rtp">Blended RTP</span></div></div>
               <div class="stat-box"><div class="sv">167</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.new_players">New Players (BC)</span></div></div>
               <div class="stat-box flag"><div class="sv">59.3%</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.neg20">Negative after 20 rds</span></div></div>
@@ -3492,6 +3492,46 @@ const sitesChart = mkChart('sitesChart', {
   },
 });
 
+/* ---------- Site Comparison: per-day Bet/Payout/RTP combo, one per site + one
+   for General -- replaces what used to be a full daily table per site. ---------- */
+function bcShortDate(iso) {
+  const dt = new Date(iso + 'T00:00:00');
+  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+function bcRound2(v) {
+  return v == null ? v : Math.round(v * 100) / 100;
+}
+const SITE_STANDARD_RTP = 98.3;
+function mkSiteDailyCombo(canvasId, labels, bet, payout, rtp) {
+  return mkChart(canvasId, {
+    data: {
+      labels,
+      datasets: [
+        { type: 'bar', label: 'Bet Amount (₱)', data: bet, backgroundColor: '#118DFF', yAxisID: 'y', borderRadius: 3, barPercentage: .85, categoryPercentage: .9 },
+        { type: 'bar', label: 'Payout (₱)', data: payout, backgroundColor: '#0F9DA8', yAxisID: 'y', borderRadius: 3, barPercentage: .85, categoryPercentage: .9 },
+        { type: 'line', label: 'RTP (%)', data: rtp, borderColor: '#F2A93B', backgroundColor: '#F2A93B', yAxisID: 'y1', tension: .3, pointRadius: 2, borderWidth: 2 },
+        { type: 'line', label: `Target RTP (${SITE_STANDARD_RTP}%)`, data: labels.map(() => SITE_STANDARD_RTP), borderColor: '#9AA3BC', yAxisID: 'y1', pointRadius: 0, borderWidth: 1.5, borderDash: [6,4] },
+      ],
+    },
+    options: {
+      responsive: true, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { position: 'bottom', labels: { color: '#182236', usePointStyle: true, boxWidth: 8 } } },
+      scales: {
+        x: { ticks: { color: '#6B7590' }, grid: { display: false } },
+        y: { position: 'left', ticks: { color: '#6B7590', callback: v => '₱' + v.toLocaleString() }, grid: { color: '#E4E8F1' } },
+        y1: { position: 'right', ticks: { color: '#9A6A0A', callback: v => v.toFixed(2) + '%' }, grid: { drawOnChartArea: false } },
+      },
+    },
+  });
+}
+const sitesDailyGeneralChart = mkSiteDailyCombo('sitesDailyGeneralChart', dLabels, dBet, dPayout, dRtp);
+const sitesDailySiteCharts = (D.sites.history || []).map(s => {
+  const rows = s.daily || [];
+  const labels = rows.map(d => bcShortDate(d.date));
+  return mkSiteDailyCombo('sitesDailyChart-' + s.site, labels,
+    rows.map(d => bcRound2(d.bet)), rows.map(d => bcRound2(d.payout)), rows.map(d => bcRound2(d.rtp)));
+});
+
 /* ---------- Daily combo chart ---------- */
 const dailyComboChart = mkChart('dailyComboChart', {
   data: {
@@ -4260,7 +4300,7 @@ const pageCharts = {
   bugs: [betLockChart],
   weekly: [weeklyTotalsChart, weeklyPerDayChart],
   monthly: [monthlyTotalsChart, monthlyRoundsChart],
-  sites: [sitesChart],
+  sites: [sitesChart, sitesDailyGeneralChart, ...sitesDailySiteCharts],
   daily: [dailyComboChart, dailyGgrNewChart],
   time: [hourOfDayChart, weekdayChart, avgBetChart],
   players: [survivalChart, churnChart, originChart],
