@@ -104,14 +104,14 @@
   .chip .k{color:var(--muted); font-weight:500;}
   .chip.today{background:#FFF7E8; border-color:#F5DDA5; color:#8A6400;}
 
-  .wrap{padding:16px 24px 30px;}
+  .wrap{padding:14px 24px 24px;}
 
-  section{margin-bottom:16px;}
+  section{margin-bottom:13px;}
   .section-title{font-size:12.5px; font-weight:800; color:var(--navy); margin:0 0 9px; display:flex; align-items:center; gap:8px;}
   .section-title .bar{width:4px; height:14px; border-radius:3px; background:var(--blue);}
   .section-title .count{margin-left:auto; font-size:10px; font-weight:700; color:var(--muted); background:var(--panel); border:1px solid var(--border); padding:2px 9px; border-radius:12px;}
 
-  .panel{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px; box-shadow:0 1px 2px rgba(15,30,60,.04); min-width:0;}
+  .panel{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:12px; box-shadow:0 1px 2px rgba(15,30,60,.04); min-width:0;}
   .panel h2{margin:0 0 10px; font-size:12px; font-weight:700; color:var(--navy); display:flex; align-items:center; gap:6px;}
   .panel h2 small{color:var(--muted); font-weight:500; font-size:10.5px;}
   .panel, .hero-card, .stat-box, .info-panel, .exec-card{transition:transform .18s ease, box-shadow .18s ease;}
@@ -152,6 +152,8 @@
   .panel-flex{display:flex; flex-direction:column;}
   .chart-fill{position:relative; flex:1; min-height:280px;}
   .chart-fill canvas{max-height:none !important;}
+  .donut-wrap{max-width:230px; height:200px; margin:0 auto;}
+  .donut-wrap canvas{max-height:none !important;}
   thead th{text-align:left; color:var(--muted); font-weight:700; font-size:10px; text-transform:uppercase; letter-spacing:.04em; padding:7px 9px; border-bottom:2px solid var(--border); white-space:nowrap; background:#F7F9FD;}
   tbody td{padding:7px 9px; border-bottom:1px solid var(--border); color:var(--text);}
   tbody:not(#allPlayersBody) tr:nth-child(even){background:#FAFBFE;}
@@ -196,10 +198,10 @@
   .show-more-btn{background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:6px 14px; font-size:12px; font-weight:600; color:var(--blue); cursor:pointer;}
   .show-more-btn:hover{background:#EEF5FF;}
 
-  .hero-wrap{margin-bottom:16px;}
+  .hero-wrap{margin-bottom:13px;}
   .hero-wrap .hero-heading{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:0 0 8px; display:flex; align-items:center; gap:6px;}
   .hero-wrap .hero-heading::after{content:''; flex:1; height:1px; background:var(--border);}
-  .hero-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
+  .hero-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
   @media(max-width:1100px){ .hero-grid{grid-template-columns:repeat(2,1fr);} }
   /* Site Comparison page: every block (the combined total, and each site)
      is 10 cards -- Bet/Payout/GGR/RTP/Players/New Players/Settled Rounds/
@@ -228,7 +230,7 @@
   .site-heading .sh-range{font-size:11px; font-weight:600; color:var(--muted2);}
   .hero-card{
     position:relative; overflow:hidden; background:var(--panel); border:1px solid var(--border);
-    border-radius:12px; padding:15px 17px; box-shadow:0 3px 10px rgba(15,30,60,.06);
+    border-radius:12px; padding:13px 15px; box-shadow:0 3px 10px rgba(15,30,60,.06);
   }
   .hero-card::before{content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--hero-color, var(--blue));}
   .hero-card::after{content:''; position:absolute; right:-26px; top:-26px; width:100px; height:100px; border-radius:50%; background:var(--hero-color, var(--blue)); opacity:.07;}
@@ -253,7 +255,7 @@
   .hero-card .hero-wow .hero-wow-prev{color:var(--muted2); font-weight:500;}
 
   .info-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;}
-  .info-panel{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:13px 15px; box-shadow:0 1px 2px rgba(15,30,60,.04); min-width:0;}
+  .info-panel{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgba(15,30,60,.04); min-width:0;}
   .info-panel h3{margin:0 0 8px; font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.04em; display:flex; align-items:center; gap:7px; padding-bottom:7px; border-bottom:1px solid var(--border);}
   .info-panel h3 .dot{width:6px; height:6px; border-radius:50%; background:var(--blue);}
   .info-panel.c-teal h3 .dot{background:var(--teal);} .info-panel.c-amber h3 .dot{background:var(--amber);}
@@ -269,7 +271,7 @@
   .info-panel ul.read-list li:last-child{margin-bottom:0;}
   .info-panel ul.read-list b{color:var(--navy);}
 
-  .row{display:grid; gap:12px; min-width:0;}
+  .row{display:grid; gap:10px; min-width:0;}
   .row > *{min-width:0;}
   .row.cols-2{grid-template-columns:1.3fr 1fr;}
   .row.cols-2-even{grid-template-columns:1fr 1fr;}
@@ -678,92 +680,6 @@
         </section>
 
         <section>
-          <div class="section-title"><span class="bar"></span> <span class="i18n" data-i18n="overview.section.dashboard_snapshot">Dashboard Snapshot</span><span class="count"><span class="i18n" data-i18n="overview.section.dashboard_snapshot_sub">every metric, one page</span></span></div>
-          <div class="row cols-3">
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.daily_trend.title">Daily Trend</span> <small>Sep 1–30</small></h2>
-              <canvas id="ovWeeklyChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-1"><ul>
-                <li><span class="i18n" data-i18n="overview.note.daily_trend.1" data-i18n-vars='{"range": "Sep 1–30", "ggr": "₱233,653.88", "bet": "₱6,123,922.50", "rtp": "96.18"}'>Sep 1–30: <b>₱233,653.88</b> GGR on <b>₱6,123,922.50</b> wagered (96.18% RTP).</span></li>
-                <li><span class="i18n" data-i18n="overview.note.daily_trend.2" data-i18n-vars='{"weekday": "Tuesday", "day": "Sep 22", "ggr": "₱42,169.75", "bet": "₱670,521.50", "rtp": "93.71", "rounds": "151,871"}'>Best day: Tuesday, Sep 22 — ₱42,169.75 GGR on ₱670,521.50 wagered (93.71% RTP, 151,871 rounds).</span></li>
-                <li><span class="i18n" data-i18n="overview.note.daily_trend.3" data-i18n-vars='{"weekday": "Monday", "day": "Sep 14", "ggr": "−₱18,383.75", "bet": "₱230,435.00", "rtp": "107.98"}'>Weakest day: Monday, Sep 14 — GGR dipped to −₱18,383.75 on ₱230,435.00 wagered, at 107.98% RTP.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.hour_of_day.title">Hour-of-Day</span> <small><span class="i18n" data-i18n="overview.panel.rounds_ggr_sub">rounds &amp; GGR</span></small></h2>
-              <canvas id="ovHourChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-2"><ul>
-                <li><span class="i18n" data-i18n="overview.note.hour.1">Rounds peak in the evening (20:00–23:00, ~4,300–6,200 rounds/hr), with a secondary bump in the afternoon (14:00–15:00, ~2,900–3,600 rounds/hr) — a mobile/casual pattern outside typical office hours.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.hour.2">GGR is volatile hour-to-hour: 21:00 alone drags −₱8,380.00 despite moderate volume (4,300 rounds), while 15:00 swings sharply positive (+₱6,475.00).</span></li>
-                <li><span class="i18n" data-i18n="overview.note.hour.3">A sign that template mix or short-run variance, not a steady house edge, is driving the hourly result.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.weekday_pattern.title">Weekday Pattern</span> <small><span class="i18n" data-i18n="overview.panel.rounds_ggr_sub">rounds &amp; GGR</span></small></h2>
-              <canvas id="ovWeekdayChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-3"><ul>
-                <li><span class="i18n" data-i18n="overview.note.weekday.1">Sunday is the busiest day (10,674 rounds) and also posts solid positive GGR (₱4,242.50).</span></li>
-                <li><span class="i18n" data-i18n="overview.note.weekday.2">Thursday runs high volume (8,740 rounds) but the thinnest margin (only ₱826.25 GGR) — high volume near break-even.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.weekday.3">Tuesday is the only day this week with negative GGR (−₱3,488.75) despite comparable round volume (11,297) to the other weekdays.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.player_tiers.title">Player Value Tiers</span> <small><span class="i18n" data-i18n="overview.panel.pct_of_bet_sub">% of bet</span></small></h2>
-              <canvas id="ovTierChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-4"><ul>
-                <li><span class="i18n" data-i18n="overview.note.tiers.1">Just 8 whale players (0.82% of the base) account for 34.66% of total bet volume, and this week they are net-favored — house GGR against whales is <b>−₱1,263.75</b>.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.tiers.2">The top 10% of players by spend account for 72.21% of total bet — revenue is concentrated in a small group.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.tiers.3">If these whales churn, the impact on revenue would be significant, so they should be monitored and retained.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.bet_denom.title">Bet Denomination Distribution</span> <small><span class="i18n" data-i18n="overview.panel.rounds_by_stake_sub">rounds by stake</span></small></h2>
-              <canvas id="ovBetSizeChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-5"><ul>
-                <li><span class="i18n" data-i18n="overview.note.denom.1">₱5 is by far the most common stake (47,850 rounds, 72.93% of volume), confirming the base is dominated by micro-stakes/casual players.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.denom.2">Denominations of ₱500+ combine for 146 rounds all week (0.22% of volume), so volume is still not high-roller driven.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.denom.3">Consistent with the concentration chart: a small number of players hold an outsized bet share even though most individual rounds are tiny.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.outcome_split.title">Ticket Outcome Split</span> <small><span class="i18n" data-i18n="overview.panel.rounds_count_sub" data-i18n-vars='{"rounds": "1,084,806"}'>1,084,806 rounds</span></small></h2>
-              <canvas id="ovOutcomeChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-6"><ul>
-                <li><span class="i18n" data-i18n="overview.note.outcome.1" data-i18n-vars='{"loss": "78.31", "win": "16.33", "push": "5.36"}'>78.31% of rounds are a player loss, 16.33% a win, and only 5.36% a push/refund — consistent across the period.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.outcome.2">New players who lose frequently right after they start tend to churn early (see Survival chart): frequent losses discourage continued play.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.bet_type.title">Bet-Type Breakdown</span> <small><span class="i18n" data-i18n="overview.panel.bet_type.sub">rounds/bet/RTP, 4 categories</span></small></h2>
-              <canvas id="ovBetTypeChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-7"><ul>
-                <li><span class="i18n" data-i18n="overview.note.bettype.1"><b>Bonus Trigger Round</b> (betType NORMAL_BET with a nonzero <span class="mono">otherWinAmount</span>) is real and material: 1,492 rounds (2.27% of volume) drove a payout-heavy RTP of 1,212.37% on just ₱17,790 of bet — expected, since a triggered feature's payout isn't sized to its small base stake.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.bettype.2">Buy Feature (223 rounds, 0.34%) carries a much larger average stake (₱154.71/round vs ₱10.06 for Normal Rounds) and runs a healthier RTP (79.23%) than Normal Rounds (66.94%) this week.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.bettype.3">See the Math page for the full reconciled breakdown.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.rtp_template.title">RTP by Template</span> <small><span class="i18n" data-i18n="overview.panel.pct_of_rounds_sub">% of rounds</span></small></h2>
-              <canvas id="ovRtpTemplateChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-8"><ul>
-                <li><span class="i18n" data-i18n="overview.note.rtptemplate.1">Template 4 carries the bulk of volume (45.73%) at a healthy 96.55% RTP.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.rtptemplate.2">Template 8 stands out as a house-favored outlier (75.85% RTP on 3,456 rounds).</span></li>
-                <li><span class="i18n" data-i18n="overview.note.rtptemplate.3">Templates 7 and 9 swing player-favored (113.68% and 120.77% RTP) on smaller samples (1,923 and 1,578 rounds) — worth monitoring whether this is variance or a pattern that needs correcting.</span></li>
-              </ul></div>
-            </div>
-            <div class="panel">
-              <h2><span class="i18n" data-i18n="overview.panel.survival.title">New Player Survival</span> <small><span class="i18n" data-i18n="overview.panel.survival.sub">% still active by round</span></small></h2>
-              <canvas id="ovSurvivalChart" height="170"></canvas>
-              <div class="note" data-note-id="overview-9"><ul>
-                <li><span class="i18n" data-i18n="overview.note.survival.1">Retention drops off quickly — only 58.46% of players remain active past round 20, and 30.87% past round 50.</span></li>
-                <li><span class="i18n" data-i18n="overview.note.survival.2">Lines up with the outcome split above: 78.57% of rounds are a loss, so many players likely lose early and stop playing soon after — more an outcome/frustration effect than a technical issue.</span></li>
-              </ul></div>
-            </div>
-          </div>
-          <div class="note" data-note-id="overview-10"><span class="i18n" data-i18n="overview.note.grid_footer">Compact previews of every chart in this report, gathered on one page. Each has a full-size version with supporting tables and notes on its own page (Weekly, Time Patterns, Players &amp; Value, Math &amp; Performance).</span></div>
-        </section>
-
-        <section>
           <div class="section-title"><span class="bar"></span> <span class="i18n" data-i18n="overview.section.exec_summary">Executive Summary</span></div>
           <div class="exec-card">
             <div class="note" data-note-id="overview-13">
@@ -777,50 +693,6 @@
                 <li><span class="i18n" data-i18n="overview.exec.li5">Round-survival drops sharply after round 20 (58.46% retained) and again after round 50 (30.87% retained) — see the Player Analysis page for the full churn curve.</span></li>
               </ul>
             </div>
-            <div class="stat-strip">
-              <div class="stat-box"><div class="sv">₱233,653.88</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.ggr">Full-Week GGR</span></div></div>
-              <div class="stat-box"><div class="sv">96.18%</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.rtp">Blended RTP</span></div></div>
-              <div class="stat-box"><div class="sv">14,497</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.new_players">New Players (BC)</span></div></div>
-              <div class="stat-box flag"><div class="sv">67.4%</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.neg20">Negative after 20 rds</span></div></div>
-              <div class="stat-box"><div class="sv">36</div><div class="sl"><span class="i18n" data-i18n="overview.exec.stat.median">Median Rounds/Player</span></div></div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-title"><span class="bar"></span> <span class="i18n" data-i18n="overview.section.week_glance">Week at a Glance — Day by Day</span><span class="count"><span class="i18n" data-i18n="overview.section.days_count" data-i18n-vars='{"n": 22}'>22 days</span></span></div>
-          <div class="panel">
-            <table>
-              <thead><tr><th><span class="i18n" data-i18n="overview.table.date">Date</span></th><th><span class="i18n" data-i18n="overview.table.bet_amount">Bet Amount</span></th><th><span class="i18n" data-i18n="overview.table.payout">Payout</span></th><th><span class="i18n" data-i18n="overview.table.ggr">GGR</span></th><th><span class="i18n" data-i18n="overview.table.rtp">RTP</span></th><th><span class="i18n" data-i18n="overview.table.rounds">Rounds</span></th><th><span class="i18n" data-i18n="overview.table.players">Players</span></th></tr></thead>
-              <tbody>
-                <tr><td>2026-09-01</td><td>₱250,855.00</td><td>₱254,343.75</td><td class="red">−₱3,488.75</td><td>101.39%</td><td>11,297</td><td>175</td></tr>
-                <tr><td>2026-09-02</td><td>₱92,205.00</td><td>₱78,796.25</td><td class="green">₱13,408.75</td><td>85.46%</td><td>10,594</td><td>162</td></tr>
-                <tr><td>2026-09-03</td><td>₱70,785.00</td><td>₱69,958.75</td><td class="green">₱826.25</td><td>98.83%</td><td>8,740</td><td>142</td></tr>
-                <tr><td>2026-09-04</td><td>₱59,680.00</td><td>₱57,668.75</td><td class="green">₱2,011.25</td><td>96.63%</td><td>8,453</td><td>151</td></tr>
-                <tr><td>2026-09-05</td><td>₱55,460.00</td><td>₱54,187.50</td><td class="green">₱1,272.50</td><td>97.71%</td><td>7,850</td><td>167</td></tr>
-                <tr><td>2026-09-06</td><td>₱91,410.00</td><td>₱87,167.50</td><td class="green">₱4,242.50</td><td>95.36%</td><td>10,674</td><td>169</td></tr>
-                <tr><td>2026-09-07</td><td>₱84,235.00</td><td>₱79,740.00</td><td class="green">₱4,495.00</td><td>94.66%</td><td>10,089</td><td>138</td></tr>
-                <tr><td>2026-09-08</td><td>₱89,465.00</td><td>₱88,673.75</td><td class="green">₱791.25</td><td>99.12%</td><td>12,536</td><td>179</td></tr>
-                <tr><td>2026-09-09</td><td>₱93,110.00</td><td>₱86,747.50</td><td class="green">₱6,362.50</td><td>93.17%</td><td>9,830</td><td>160</td></tr>
-                <tr><td>2026-09-10</td><td>₱121,355.00</td><td>₱117,121.25</td><td class="green">₱4,233.75</td><td>96.51%</td><td>15,043</td><td>250</td></tr>
-                <tr><td>2026-09-11</td><td>₱107,485.00</td><td>₱102,663.75</td><td class="green">₱4,821.25</td><td>95.51%</td><td>12,537</td><td>275</td></tr>
-                <tr><td>2026-09-12</td><td>₱132,155.00</td><td>₱118,233.75</td><td class="green">₱13,921.25</td><td>89.47%</td><td>16,367</td><td>303</td></tr>
-                <tr><td>2026-09-13</td><td>₱135,580.00</td><td>₱124,756.25</td><td class="green">₱10,823.75</td><td>92.02%</td><td>17,431</td><td>341</td></tr>
-                <tr><td>2026-09-14</td><td>₱230,435.00</td><td>₱248,818.75</td><td class="red">−₱18,383.75</td><td>107.98%</td><td>17,066</td><td>410</td></tr>
-                <tr><td>2026-09-15</td><td>₱189,530.00</td><td>₱190,167.50</td><td class="red">−₱637.50</td><td>100.34%</td><td>19,539</td><td>385</td></tr>
-                <tr><td>2026-09-16</td><td>₱190,605.00</td><td>₱188,596.25</td><td class="green">₱2,008.75</td><td>98.95%</td><td>17,934</td><td>354</td></tr>
-                <tr><td>2026-09-17</td><td>₱757,045.50</td><td>₱719,302.00</td><td class="green">₱37,743.50</td><td>95.01%</td><td>138,492</td><td>2,334</td></tr>
-                <tr><td>2026-09-18</td><td>₱664,071.00</td><td>₱644,173.00</td><td class="green">₱19,898.00</td><td>97.00%</td><td>161,945</td><td>2,381</td></tr>
-                <tr><td>2026-09-19</td><td>₱675,596.50</td><td>₱642,262.12</td><td class="green">₱33,334.38</td><td>95.07%</td><td>145,907</td><td>2,415</td></tr>
-                <tr><td>2026-09-20</td><td>₱760,186.00</td><td>₱728,368.50</td><td class="green">₱31,817.50</td><td>95.81%</td><td>146,336</td><td>2,301</td></tr>
-                <tr><td>2026-09-21</td><td>₱602,152.00</td><td>₱580,170.00</td><td class="green">₱21,982.00</td><td>96.35%</td><td>134,275</td><td>2,177</td></tr>
-                <tr class="hl"><td>2026-09-22</td><td>₱670,521.50</td><td>₱628,351.75</td><td class="green">₱42,169.75</td><td>93.71%</td><td>151,871</td><td>2,421</td></tr>
-                <tr><td><b><span class="i18n" data-i18n="overview.table.full_week_total" data-i18n-vars='{"range": "Sep 1–30"}'>Sep 1–30 (Full Week Total)</span></b></td><td><b>₱6,123,922.50</b></td><td><b>₱5,890,268.62</b></td><td class="green"><b>₱233,653.88</b></td><td><b>96.18%</b></td><td><b>1,084,806</b></td><td><b>15,402</b></td></tr>
-              </tbody>
-            </table>
-            <div class="note" data-note-id="overview-11"><ul>
-              <li><span class="i18n" data-i18n="overview.note.week_glance" data-i18n-vars='{"range": "Sep 1–30", "rows": "1,084,806"}'>All Sep 1–30 figures are computed directly from settled API order rows cached for this week (1,084,806 raw rows).</span></li>
-            </ul></div>
           </div>
         </section>
 
@@ -829,7 +701,6 @@
           <div class="row cols-2">
             <div class="info-panel c-amber">
               <h3><span class="dot"></span> <span class="i18n" data-i18n="overview.panel1.title">RTP vs. 97% Target</span></h3>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel1.k1">Full-week blended RTP</span></span><span class="v amber">96.18%</span></div>
               <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel1.k2">Gap to 97% target</span></span><span class="v red">-0.82 pp</span></div>
               <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel1.k3">Daily RTP range</span></span><span class="v">85.46% – 107.98%</span></div>
               <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel1.k4">Biggest single-day drag</span></span><span class="v red">Sep 2: 85.46%</span></div>
@@ -839,28 +710,11 @@
               <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel2.k1">Top 10% of players</span></span><span class="v red">68.03% of bet volume</span></div>
               <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel2.k2">Whale players (₱10K+)</span></span><span class="v">61 of 15,402 (0.40%)</span></div>
               <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel2.k3">Whale share of GGR</span></span><span class="v green">₱11,384.25 net</span></div>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel2.k4">Micro players (&lt;₱100)</span></span><span class="v">7,749 (50.31%) — RTP 89.21%</span></div>
-            </div>
-            <div class="info-panel c-violet">
-              <h3><span class="dot"></span> <span class="i18n" data-i18n="overview.panel3.title">Early Churn</span></h3>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel3.k1">Negative after 20 rounds</span></span><span class="v amber">67.41% of players</span></div>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel3.k2">Retained past round 20</span></span><span class="v">67.91%</span></div>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel3.k3">Retained past round 50</span></span><span class="v red">38.74%</span></div>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel3.k4">Median rounds / player</span></span><span class="v">36 (mean 70.43)</span></div>
-            </div>
-            <div class="info-panel c-teal">
-              <h3><span class="dot"></span> <span class="i18n" data-i18n="overview.panel4.title">RTP-Drag Contributors</span></h3>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel4.k1">Normal Rounds RTP</span></span><span class="v red">69.18% <span class="muted" style="font-weight:500;">(97.43% <span class="i18n" data-i18n="overview.panel4.of_rounds">of rounds</span>)</span></span></div>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel4.k2">Bonus Trigger Round RTP</span></span><span class="v amber">1,267.23% <span class="muted" style="font-weight:500;">(2.21% <span class="i18n" data-i18n="overview.panel4.of_rounds">of rounds</span>)</span></span></div>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel4.k3">Buy Feature RTP</span></span><span class="v">84.12% <span class="muted" style="font-weight:500;">(0.36% <span class="i18n" data-i18n="overview.panel4.of_rounds">of rounds</span>)</span></span></div>
-              <div class="info-row"><span class="k"><span class="i18n" data-i18n="overview.panel4.k4">Busiest weekday</span></span><span class="v">Tue — 195,243 rds / ₱38,834.75 GGR</span></div>
             </div>
           </div>
           <div class="note" data-note-id="overview-12"><span class="i18n" data-i18n="overview.note.risk_flags_intro">These four panels surface the signals most likely to need follow-up:</span><ul>
             <li><span class="i18n" data-i18n="overview.note.risk_flags.1">RTP is running just under the 97% target design rate.</span></li>
             <li><span class="i18n" data-i18n="overview.note.risk_flags.2">Revenue is concentrated in a small player cohort.</span></li>
-            <li><span class="i18n" data-i18n="overview.note.risk_flags.3">Most new players churn early.</span></li>
-            <li><span class="i18n" data-i18n="overview.note.risk_flags.4">Normal Rounds carries a materially lower RTP than the blended figure while Bonus Trigger Round pulls the other direction.</span></li>
             <li><span class="i18n" data-i18n="overview.note.risk_flags.5">Full detail for each is on the Time Patterns, Players &amp; Value, and Math &amp; Performance pages.</span></li>
           </ul></div>
         </section>
@@ -2484,7 +2338,7 @@
           <div class="row cols-2">
             <div class="panel">
               <h2><span class="i18n" data-i18n="roster.panel.spend_tier.title">Players by Spend Tier</span></h2>
-              <canvas id="tierChart"></canvas>
+              <div class="donut-wrap"><canvas id="tierChart"></canvas></div>
             </div>
             <div class="panel">
               <table>
@@ -2607,7 +2461,7 @@
           <div class="row cols-2">
             <div class="panel">
               <h2><span class="i18n" data-i18n="players.panel.origin_breakdown.title">Player Origin Breakdown</span> <small><span class="i18n" data-i18n="players.panel.origin_breakdown.sub" data-i18n-vars='{"n": "15,402"}'>share of 15,402 total players</span></small></h2>
-              <canvas id="originChart"></canvas>
+              <div class="donut-wrap"><canvas id="originChart"></canvas></div>
             </div>
             <div class="info-panel">
               <h3><span class="dot"></span> <span class="i18n" data-i18n="players.info.origin_defs.title">Origin Definitions</span></h3>
@@ -2786,7 +2640,7 @@
             </div>
             <div class="panel">
               <h2><span class="i18n" data-i18n="math.panel.rtp_template.title">RTP by Template</span></h2>
-              <canvas id="rtpTemplateChart"></canvas>
+              <div class="donut-wrap"><canvas id="rtpTemplateChart"></canvas></div>
             </div>
           </div>
         </section>
@@ -2942,7 +2796,7 @@
             </div>
             <div class="panel">
               <h2><span class="i18n" data-i18n="math.panel.outcome_split.title">Ticket Outcome Split</span> <small><span class="i18n" data-i18n="math.panel.mult_dist.sub" data-i18n-vars='{"n": "1,084,806"}'>1,084,806 settled rounds</span></small></h2>
-              <canvas id="outcomeSplitChart"></canvas>
+              <div class="donut-wrap"><canvas id="outcomeSplitChart"></canvas></div>
             </div>
           </div>
           <div class="note" data-note-id="math-7"><ul>
@@ -3766,7 +3620,7 @@ const originChart = mkChart('originChart', {
     datasets: [{ data: D.origin.values, backgroundColor: ['#118DFF', '#F2A93B', '#0F9DA8'], borderColor: '#FFFFFF', borderWidth: 3, hoverOffset: 8 }],
   },
   options: {
-    responsive: true, cutout: '60%',
+    responsive: true, maintainAspectRatio: false, cutout: '68%',
     plugins: {
       legend: { position: 'bottom', labels: { color: '#182236', usePointStyle: true, boxWidth: 8 } },
       tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()} (${(ctx.raw/D.totals.players*100).toFixed(1)}%)` } },
@@ -3842,7 +3696,7 @@ const rtpTemplateChart = mkChart('rtpTemplateChart', {
     datasets: [{ data: D.templates.rounds, backgroundColor: ['#118DFF','#0F9DA8','#22A06B','#F2A93B','#8B5CF6','#E5514C','#4C7FD1'], borderColor: '#FFFFFF', borderWidth: 3, hoverOffset: 8 }],
   },
   options: {
-    responsive: true, cutout: '60%',
+    responsive: true, maintainAspectRatio: false, cutout: '68%',
     plugins: {
       legend: { position: 'bottom', labels: { color: '#182236', usePointStyle: true, boxWidth: 8 } },
       tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()} rounds (${(ctx.raw/D.totals.rounds*100).toFixed(1)}%)` } },
@@ -3949,7 +3803,7 @@ const playerStatusChart = mkChart('playerStatusChart', {
     datasets: [{ data: (D.playerStatus && D.playerStatus.values) || [0, 0], backgroundColor: ['#22A06B', '#9AA3BC', '#D8DDE9'], borderColor: '#FFFFFF', borderWidth: 3, hoverOffset: 8 }],
   },
   options: {
-    responsive: true, cutout: '60%',
+    responsive: true, maintainAspectRatio: false, cutout: '68%',
     plugins: {
       legend: { position: 'bottom', labels: { color: '#182236', usePointStyle: true, boxWidth: 8 } },
       tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()} (${(ctx.raw/D.totals.players*100).toFixed(2)}%)` } },
@@ -4004,7 +3858,7 @@ const tierChart = mkChart('tierChart', {
     datasets: [{ data: D.tiers.bet, backgroundColor: ['#9AA3BC','#118DFF','#0F9DA8','#F2A93B','#E5514C'], borderColor: '#FFFFFF', borderWidth: 3, hoverOffset: 8 }],
   },
   options: {
-    responsive: true, cutout: '60%',
+    responsive: true, maintainAspectRatio: false, cutout: '68%',
     plugins: {
       legend: { position: 'bottom', labels: { color: '#182236', usePointStyle: true, boxWidth: 8 } },
       tooltip: { callbacks: { label: ctx => `${ctx.label}: ₱${ctx.raw.toLocaleString()} (${(ctx.raw/D.totals.bet*100).toFixed(1)}% of bet)` } },
@@ -4086,7 +3940,7 @@ const outcomeSplitChart = mkChart('outcomeSplitChart', {
     datasets: [{ data: D.outcomes.rounds, backgroundColor: ['#E5514C','#22A06B','#F2A93B'], borderColor: '#FFFFFF', borderWidth: 3, hoverOffset: 8 }],
   },
   options: {
-    responsive: true, cutout: '65%',
+    responsive: true, maintainAspectRatio: false, cutout: '68%',
     plugins: {
       legend: { position: 'bottom', labels: { color: '#182236', usePointStyle: true, boxWidth: 8 } },
       tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()} rounds (${(ctx.raw/D.totals.rounds*100).toFixed(1)}%)` } },
@@ -4094,167 +3948,8 @@ const outcomeSplitChart = mkChart('outcomeSplitChart', {
   },
 });
 
-/* ---------- Overview dashboard snapshot: compact reuse of the charts above ---------- */
-const miniLegend = { legend: { position: 'bottom', labels: { color: '#182236', usePointStyle: true, boxWidth: 6, font: { size: 9 } } } };
-const miniTicks = { color: '#6B7590', font: { size: 9 } };
-
-const ovWeeklyChart = mkChart('ovWeeklyChart', {
-  data: {
-    labels: D.weekly.shortLabels,
-    datasets: [
-      { type: 'bar', label: 'Bet Amount (₱)', data: D.weekly.bet, backgroundColor: '#118DFF', yAxisID: 'y', borderRadius: 3, barPercentage: .7, categoryPercentage: .7, maxBarThickness: 28 },
-      { type: 'bar', label: 'Payout (₱)', data: D.weekly.payout, backgroundColor: '#0F9DA8', yAxisID: 'y', borderRadius: 3, barPercentage: .7, categoryPercentage: .7, maxBarThickness: 28 },
-      { type: 'line', label: 'GGR (₱)', data: D.weekly.ggr, borderColor: '#F2A93B', backgroundColor: '#F2A93B', yAxisID: 'y1', tension: .3, pointRadius: 3, pointBackgroundColor: '#F2A93B', borderWidth: 1.5 },
-      { type: 'line', label: 'Players', data: D.weekly.players, borderColor: '#E5514C', backgroundColor: '#E5514C', yAxisID: 'y1', tension: .3, pointRadius: 3, pointBackgroundColor: '#E5514C', borderWidth: 1.5 },
-    ],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
-    plugins: miniLegend,
-    scales: {
-      x: { ticks: miniTicks, grid: { display: false } },
-      y: { position: 'left', beginAtZero: true, ticks: { ...miniTicks, callback: v => v.toLocaleString() }, grid: { color: '#E4E8F1' } },
-      y1: { position: 'right', beginAtZero: true, ticks: { ...miniTicks, callback: v => v.toLocaleString() }, grid: { drawOnChartArea: false } },
-    },
-  },
-});
-
-const ovHourChart = mkChart('ovHourChart', {
-  data: {
-    labels: hodLabels,
-    datasets: [
-      { type: 'bar', label: 'Rounds', data: hodRounds, backgroundColor: '#118DFF', yAxisID: 'y', borderRadius: 2 },
-      { type: 'line', label: 'GGR (₱)', data: hodGgr, borderColor: '#E5514C', backgroundColor: '#E5514C', yAxisID: 'y1', tension: .3, pointRadius: 2, pointBackgroundColor: '#E5514C', borderWidth: 1.5, labelColor: '#E5514C' },
-    ],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
-    plugins: miniLegend,
-    scales: {
-      x: { ticks: { ...miniTicks, maxRotation: 0, autoSkip: true, maxTicksLimit: 6 }, grid: { display: false } },
-      y: { position: 'left', ticks: miniTicks, grid: { color: '#E4E8F1' } },
-      y1: { position: 'right', ticks: { ...miniTicks, callback: v => '₱' + v.toLocaleString() }, grid: { drawOnChartArea: false } },
-    },
-  },
-});
-
-const ovWeekdayChart = mkChart('ovWeekdayChart', {
-  type: 'bar',
-  data: {
-    labels: weekdayData.map(r => r.d.slice(0,3)),
-    datasets: [
-      { label: 'Rounds', data: weekdayData.map(r => r.rounds), backgroundColor: '#1B3566', borderRadius: 3 },
-      { label: 'GGR (₱)', data: weekdayData.map(r => r.ggr), backgroundColor: '#c81e1e', borderRadius: 3 },
-    ],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: miniLegend,
-    scales: {
-      x: { ticks: miniTicks, grid: { display: false } },
-      y: { ticks: { ...miniTicks, callback: v => v.toLocaleString() }, grid: { color: '#E4E8F1' } },
-    },
-  },
-});
-
-const ovTierChart = mkChart('ovTierChart', {
-  type: 'doughnut',
-  data: {
-    labels: ['Micro', 'Casual', 'Regular', 'High', 'Whale'],
-    datasets: [{ data: D.tiers.bet, backgroundColor: ['#9AA3BC','#118DFF','#0F9DA8','#F2A93B','#E5514C'], borderColor: '#FFFFFF', borderWidth: 2, hoverOffset: 6 }],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false, cutout: '60%',
-    plugins: { legend: miniLegend.legend, tooltip: { callbacks: { label: ctx => `${ctx.label}: ₱${ctx.raw.toLocaleString()} (${(ctx.raw/D.totals.bet*100).toFixed(1)}%)` } } },
-  },
-});
-
-const ovBetSizeChart = mkChart('ovBetSizeChart', {
-  type: 'bar',
-  data: {
-    labels: D.denom.labels,
-    datasets: [
-      { label: 'Win Count', data: D.denom.winCount, backgroundColor: '#1B3566', borderRadius: 3 },
-      { label: 'Loss Count', data: D.denom.lossCount, backgroundColor: '#c81e1e', borderRadius: 3 },
-    ],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: miniLegend,
-    scales: {
-      x: { ticks: miniTicks, grid: { display: false } },
-      y: { beginAtZero: true, ticks: { ...miniTicks, callback: v => v.toLocaleString() }, grid: { color: '#E4E8F1' } },
-    },
-  },
-});
-
-const ovOutcomeChart = mkChart('ovOutcomeChart', {
-  type: 'doughnut',
-  data: {
-    labels: ['Player Loss', 'Player Win', 'Push'],
-    datasets: [{ data: D.outcomes.rounds, backgroundColor: ['#E5514C','#22A06B','#F2A93B'], borderColor: '#FFFFFF', borderWidth: 2, hoverOffset: 6 }],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false, cutout: '65%',
-    plugins: { legend: miniLegend.legend, tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()} (${(ctx.raw/D.totals.rounds*100).toFixed(1)}%)` } } },
-  },
-});
-
-const ovBetTypeChart = mkChart('ovBetTypeChart', {
-  type: 'bar',
-  data: {
-    labels: ['Rounds (%)', 'Bet Amount (₱)', 'RTP (%)'],
-    datasets: [
-      { label: 'Normal', data: D.feature.series[0], backgroundColor: '#118DFF', borderRadius: 3 },
-      { label: 'Bonus Trigger Round', data: D.feature.series[1], backgroundColor: '#22A06B', borderRadius: 3 },
-      { label: 'Buy Feature', data: D.feature.series[3], backgroundColor: '#8B5CF6', borderRadius: 3 },
-      { label: 'Mission', data: D.feature.series[2], backgroundColor: '#9AA3BC', borderRadius: 3 },
-    ],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: miniLegend,
-    scales: {
-      x: { ticks: miniTicks, grid: { display: false } },
-      y: { type: 'logarithmic', ticks: { ...miniTicks, callback: v => [0.1,1,10,100,1000,10000,100000,1000000].includes(v) ? v.toLocaleString() : '' }, grid: { color: '#E4E8F1' } },
-    },
-  },
-});
-
-const ovRtpTemplateChart = mkChart('ovRtpTemplateChart', {
-  type: 'doughnut',
-  data: {
-    labels: D.templates.full.map(t => t.replace('TEMPLATE ID ', 'Tmpl ')),
-    datasets: [{ data: D.templates.rounds, backgroundColor: ['#118DFF','#0F9DA8','#22A06B','#F2A93B','#8B5CF6','#E5514C','#4C7FD1'], borderColor: '#FFFFFF', borderWidth: 2, hoverOffset: 6 }],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false, cutout: '60%',
-    plugins: { legend: miniLegend.legend, tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()} (${(ctx.raw/D.totals.rounds*100).toFixed(1)}%)` } } },
-  },
-});
-
-const ovSurvivalChart = mkChart('ovSurvivalChart', {
-  type: 'line',
-  data: {
-    labels: survLabels,
-    datasets: [{
-      label: '% still active', data: survPct,
-      borderColor: '#118DFF', backgroundColor: 'rgba(17,141,255,.12)',
-      fill: true, tension: .25, pointRadius: 2, pointBackgroundColor: '#118DFF', borderWidth: 1.5,
-    }],
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw.toFixed(1) + '%' } } },
-    scales: {
-      x: { ticks: miniTicks, grid: { display: false } },
-      y: { min: 0, max: 100, ticks: { ...miniTicks, callback: v => v + '%' }, grid: { color: '#E4E8F1' } },
-    },
-  },
-});
-
 const pageCharts = {
-  overview: [overviewTrendChart, ovWeeklyChart, ovHourChart, ovWeekdayChart, ovTierChart, ovBetSizeChart, ovOutcomeChart, ovBetTypeChart, ovRtpTemplateChart, ovSurvivalChart],
+  overview: [overviewTrendChart],
   bugs: [betLockChart],
   weekly: [weeklyTotalsChart, weeklyPerDayChart],
   monthly: [monthlyTotalsChart, monthlyRoundsChart],
