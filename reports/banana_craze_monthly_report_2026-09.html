@@ -36,7 +36,7 @@
      when the reader is looking at the charts. The two kinds are also tinted
      apart -- amber for a month, cyan for a week -- so the answer is readable
      from the colour alone before the word is. */
-  .sidebar .brand{padding:0 14px 13px; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,.1);}
+  .sidebar .brand{padding:0 12px 13px; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,.1);}
   .brand-name{font-size:14px; font-weight:800; color:#fff; letter-spacing:-.01em; line-height:1.2;}
   .brand-kind{display:inline-block; margin-left:7px; vertical-align:2px;
     font-size:10px; font-weight:900; letter-spacing:.10em; text-transform:uppercase;
@@ -65,15 +65,23 @@
     .brand-kind, .brand-kind.kind-week{animation:none; transform:none;
       box-shadow:0 0 0 1px rgba(255,255,255,.35), 0 3px 12px rgba(0,0,0,.45);}
   }
-  .brand-period{margin-top:9px; display:flex; align-items:center; gap:7px; flex-wrap:wrap;}
-  .brand-month{font-size:11.5px; font-weight:800; color:#EAF1FF; letter-spacing:.01em;}
+  /* The period line never wraps. "Week 36, 2026" plus "Aug 31 – Sep 6" is
+     203px of text in a 181px column, so the label used to drop to a second
+     row and the block grew a line taller on exactly the weeks with the
+     longest names. The month label now shrinks (with an ellipsis if some
+     future label is longer still) and the date pill holds its size, so the
+     two stay on one row whatever they say. */
+  .brand-period{margin-top:9px; display:flex; align-items:center; gap:3px; flex-wrap:nowrap; min-width:0;}
+  .brand-month{font-size:10.5px; font-weight:800; color:#EAF1FF; letter-spacing:-.015em;
+    flex:0 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   /* The date range is the other half of the same question ("which days am I
      looking at"), so it gets a glow of its own rather than staying a flat
      chip -- but no animation: one breathing element in the block is enough. */
-  .brand-span{font-size:12px; font-weight:900; color:#07142B;
+  .brand-span{font-size:11.5px; font-weight:900; color:#07142B;
     background:linear-gradient(180deg,#E4F0FF,#A9CBFF);
     border:1px solid rgba(220,238,255,.9);
-    border-radius:7px; padding:3.5px 10px; letter-spacing:.01em; white-space:nowrap;
+    border-radius:7px; padding:3px 7px; letter-spacing:0; white-space:nowrap;
+    flex:0 0 auto;
     box-shadow:0 2px 10px rgba(120,175,255,.50), 0 0 14px rgba(150,196,255,.35);}
   .sidebar-logo{margin-top:auto; padding:0 10px 16px; display:flex; justify-content:center;}
   .sidebar-logo img{width:100%; height:auto; display:block; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,.4);}
