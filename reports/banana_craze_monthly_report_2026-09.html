@@ -168,6 +168,13 @@
   .donut-wrap{max-width:340px; width:100%; min-height:170px; margin:0 auto; flex:1 1 auto;}
   .donut-wrap canvas{max-height:none !important;}
 
+  /* Tighter cell padding for tables that share a half-width row. Nine numeric
+     columns of player data do not fit two-up at the default padding, and a
+     table that horizontal-scrolls inside a panel reads as broken rather than
+     as dense. */
+  .table-compact thead th{padding:4px 5px; font-size:9.5px;}
+  .table-compact tbody td{padding:4px 5px;}
+
   /* ---- computed findings (report_gen/analysis.py) ---- */
   .findings{display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:10px;}
   .finding{background:var(--panel); border:1px solid var(--border); border-left:3px solid var(--blue);
@@ -2187,67 +2194,65 @@
             <li><span class="i18n" data-i18n="roster.note.concentration2">Just <b>8 High Value players</b> (₱10,000+ bet, 0.82% of players) contributed 34.66% of all volume and <b>−₱1,263.75</b> of GGR — the only tier running a net loss to the house this week.</span></li>
             <li><span class="i18n" data-i18n="roster.note.concentration3">Revenue is heavily dependent on a small cohort — worth monitoring for retention/VIP treatment.</span></li>
           </ul></div>
-        </section>
-
-        <section>
-          <div class="panel">
-            <h2><span class="i18n" data-i18n="roster.panel.top_winners.title">Top 15 Winners</span> <small><span class="i18n" data-i18n="roster.panel.top_winners.sub">by net profit to player</span></small></h2>
-            <div class="table-scroll">
-            <table>
-              <thead><tr><th><span class="i18n" data-i18n="roster.table.login">Login</span></th><th><span class="i18n" data-i18n="overview.table.rounds">Rounds</span></th><th><span class="i18n" data-i18n="weekly.k.bet">Bet</span></th><th><span class="i18n" data-i18n="overview.table.payout">Payout</span></th><th><span class="i18n" data-i18n="roster.table.net_player">Net (Player)</span></th><th><span class="i18n" data-i18n="overview.table.rtp">RTP</span></th><th><span class="i18n" data-i18n="roster.table.max_payout">Max Payout</span></th><th><span class="i18n" data-i18n="roster.table.max_mult">Max Mult.</span></th><th><span class="i18n" data-i18n="roster.table.origin">Origin</span></th><th><span class="i18n" data-i18n="roster.table.active_days_wk">Active Days (this wk)</span></th></tr></thead>
-              <tbody>
-                <tr><td class="mono">BP1_bingoplusqku6ay</td><td>319</td><td>₱97,805.00</td><td>₱108,260.00</td><td class="green">+₱10,455.00</td><td>110.69%</td><td>₱10,250.00</td><td>20.50x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusn08b08</td><td>157</td><td>₱7,575.00</td><td>₱14,316.25</td><td class="green">+₱6,741.25</td><td>188.99%</td><td>₱7,500.00</td><td>75.00x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingoplus3d9olr</td><td>7,317</td><td>₱47,200.00</td><td>₱53,001.25</td><td class="green">+₱5,801.25</td><td>112.29%</td><td>₱2,000.00</td><td>250.00x</td><td>GAME ENGINE New Players</td><td>15</td></tr>
-                <tr><td class="mono">BP1_bingoplussear5f</td><td>400</td><td>₱18,000.00</td><td>₱21,660.00</td><td class="green">+₱3,660.00</td><td>120.33%</td><td>₱2,250.00</td><td>75.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingopluslrawgg</td><td>1,528</td><td>₱15,246.50</td><td>₱18,662.50</td><td class="green">+₱3,416.00</td><td>122.41%</td><td>₱2,500.00</td><td>250.00x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingoplusymjv4y</td><td>2,638</td><td>₱26,380.00</td><td>₱29,677.50</td><td class="green">+₱3,297.50</td><td>112.50%</td><td>₱750.00</td><td>75.00x</td><td>Returning/Old BANANA CRAZE Players</td><td>19</td></tr>
-                <tr><td class="mono">BP1_cabisada011</td><td>61</td><td>₱5,435.00</td><td>₱8,662.50</td><td class="green">+₱3,227.50</td><td>159.38%</td><td>₱2,825.00</td><td>28.25x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_peryawbb1g08</td><td>607</td><td>₱12,100.50</td><td>₱15,240.00</td><td class="green">+₱3,139.50</td><td>125.95%</td><td>₱3,000.00</td><td>150.00x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingopluskgpza1</td><td>187</td><td>₱5,450.00</td><td>₱8,342.50</td><td class="green">+₱2,892.50</td><td>153.07%</td><td>₱1,850.00</td><td>50.00x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingopluse1suuf</td><td>2,876</td><td>₱14,525.00</td><td>₱17,118.75</td><td class="green">+₱2,593.75</td><td>117.86%</td><td>₱1,000.00</td><td>200.00x</td><td>GAME ENGINE New Players</td><td>8</td></tr>
-                <tr><td class="mono">BP1_bingoplus1fze4c</td><td>457</td><td>₱19,785.50</td><td>₱22,335.75</td><td class="green">+₱2,550.25</td><td>112.89%</td><td>₱3,750.00</td><td>75.00x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingoplus3wgz0c</td><td>163</td><td>₱4,030.00</td><td>₱6,570.00</td><td class="green">+₱2,540.00</td><td>163.03%</td><td>₱800.00</td><td>25.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingopluswsq23w</td><td>35</td><td>₱1,945.00</td><td>₱4,447.50</td><td class="green">+₱2,502.50</td><td>228.66%</td><td>₱3,250.00</td><td>32.50x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusm0xm2f</td><td>365</td><td>₱7,135.00</td><td>₱9,620.00</td><td class="green">+₱2,485.00</td><td>134.83%</td><td>₱1,487.50</td><td>40.25x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusok2u23</td><td>136</td><td>₱13,100.00</td><td>₱15,575.00</td><td class="green">+₱2,475.00</td><td>118.89%</td><td>₱2,000.00</td><td>20.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-              </tbody>
-            </table>
+        </section><section>
+          <div class="row cols-2-even">
+            <div class="panel">
+              <h2><span class="i18n" data-i18n="roster.panel.top_winners.title">Top 15 Winners</span> <small><span class="i18n" data-i18n="roster.panel.top_winners.sub">by net profit to player</span></small></h2>
+              <div class="table-scroll">
+              <table class="table-compact">
+                <thead><tr><th><span class="i18n" data-i18n="roster.table.login">Login</span></th><th><span class="i18n" data-i18n="overview.table.rounds">Rounds</span></th><th><span class="i18n" data-i18n="weekly.k.bet">Bet</span></th><th><span class="i18n" data-i18n="overview.table.payout">Payout</span></th><th><span class="i18n" data-i18n="roster.table.net_player">Net (Player)</span></th><th><span class="i18n" data-i18n="overview.table.rtp">RTP</span></th><th><span class="i18n" data-i18n="roster.table.max_payout">Max Payout</span></th><th><span class="i18n" data-i18n="roster.table.max_mult">Max Mult.</span></th><th><span class="i18n" data-i18n="roster.table.active_days_wk">Active Days (this wk)</span></th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">BP1_bingoplusqku6ay</td><td>319</td><td>₱97,805.00</td><td>₱108,260.00</td><td class="green">+₱10,455.00</td><td>110.69%</td><td>₱10,250.00</td><td>20.50x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusn08b08</td><td>157</td><td>₱7,575.00</td><td>₱14,316.25</td><td class="green">+₱6,741.25</td><td>188.99%</td><td>₱7,500.00</td><td>75.00x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingoplus3d9olr</td><td>7,317</td><td>₱47,200.00</td><td>₱53,001.25</td><td class="green">+₱5,801.25</td><td>112.29%</td><td>₱2,000.00</td><td>250.00x</td><td>15</td></tr>
+                  <tr><td class="mono">BP1_bingoplussear5f</td><td>400</td><td>₱18,000.00</td><td>₱21,660.00</td><td class="green">+₱3,660.00</td><td>120.33%</td><td>₱2,250.00</td><td>75.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingopluslrawgg</td><td>1,528</td><td>₱15,246.50</td><td>₱18,662.50</td><td class="green">+₱3,416.00</td><td>122.41%</td><td>₱2,500.00</td><td>250.00x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingoplusymjv4y</td><td>2,638</td><td>₱26,380.00</td><td>₱29,677.50</td><td class="green">+₱3,297.50</td><td>112.50%</td><td>₱750.00</td><td>75.00x</td><td>19</td></tr>
+                  <tr><td class="mono">BP1_cabisada011</td><td>61</td><td>₱5,435.00</td><td>₱8,662.50</td><td class="green">+₱3,227.50</td><td>159.38%</td><td>₱2,825.00</td><td>28.25x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_peryawbb1g08</td><td>607</td><td>₱12,100.50</td><td>₱15,240.00</td><td class="green">+₱3,139.50</td><td>125.95%</td><td>₱3,000.00</td><td>150.00x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingopluskgpza1</td><td>187</td><td>₱5,450.00</td><td>₱8,342.50</td><td class="green">+₱2,892.50</td><td>153.07%</td><td>₱1,850.00</td><td>50.00x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingopluse1suuf</td><td>2,876</td><td>₱14,525.00</td><td>₱17,118.75</td><td class="green">+₱2,593.75</td><td>117.86%</td><td>₱1,000.00</td><td>200.00x</td><td>8</td></tr>
+                  <tr><td class="mono">BP1_bingoplus1fze4c</td><td>457</td><td>₱19,785.50</td><td>₱22,335.75</td><td class="green">+₱2,550.25</td><td>112.89%</td><td>₱3,750.00</td><td>75.00x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingoplus3wgz0c</td><td>163</td><td>₱4,030.00</td><td>₱6,570.00</td><td class="green">+₱2,540.00</td><td>163.03%</td><td>₱800.00</td><td>25.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingopluswsq23w</td><td>35</td><td>₱1,945.00</td><td>₱4,447.50</td><td class="green">+₱2,502.50</td><td>228.66%</td><td>₱3,250.00</td><td>32.50x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusm0xm2f</td><td>365</td><td>₱7,135.00</td><td>₱9,620.00</td><td class="green">+₱2,485.00</td><td>134.83%</td><td>₱1,487.50</td><td>40.25x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusok2u23</td><td>136</td><td>₱13,100.00</td><td>₱15,575.00</td><td class="green">+₱2,475.00</td><td>118.89%</td><td>₱2,000.00</td><td>20.00x</td><td>1</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <div class="note" data-note-id="roster-6"><span class="i18n" data-i18n="roster.note.winners" data-i18n-vars='{"iso_week": "September 2026"}'>Origin and Active Days (this week, max 7) are computed directly from this week's settled order rows. The monthly report's Status/Lifetime Bet/Lifetime Payout/Lifetime RTP columns come from the backend's live per-player Lifecycle report (<code>queryUserLifeCycleReportPage</code>), which was not queried for this week-September 2026 rebuild — dropped here rather than estimated. Of these 15, 8 are Game-Engine new players (vs. 6 returning BANANA CRAZE players and 1 from other games) — new players are pulling more than their share of this week's biggest wins.</span></div>
             </div>
-            <div class="note" data-note-id="roster-6"><span class="i18n" data-i18n="roster.note.winners" data-i18n-vars='{"iso_week": "September 2026"}'>Origin and Active Days (this week, max 7) are computed directly from this week's settled order rows. The monthly report's Status/Lifetime Bet/Lifetime Payout/Lifetime RTP columns come from the backend's live per-player Lifecycle report (<code>queryUserLifeCycleReportPage</code>), which was not queried for this week-September 2026 rebuild — dropped here rather than estimated. Of these 15, 8 are Game-Engine new players (vs. 6 returning BANANA CRAZE players and 1 from other games) — new players are pulling more than their share of this week's biggest wins.</span></div>
-          </div>
-        </section>
 
-        <section>
-          <div class="panel">
-            <h2><span class="i18n" data-i18n="roster.panel.top_losers.title">Top 15 Losers</span> <small><span class="i18n" data-i18n="roster.panel.top_losers.sub">by net loss to player</span></small></h2>
-            <div class="table-scroll">
-            <table>
-              <thead><tr><th><span class="i18n" data-i18n="roster.table.login">Login</span></th><th><span class="i18n" data-i18n="overview.table.rounds">Rounds</span></th><th><span class="i18n" data-i18n="weekly.k.bet">Bet</span></th><th><span class="i18n" data-i18n="overview.table.payout">Payout</span></th><th><span class="i18n" data-i18n="roster.table.net_player">Net (Player)</span></th><th><span class="i18n" data-i18n="overview.table.rtp">RTP</span></th><th><span class="i18n" data-i18n="roster.table.max_payout">Max Payout</span></th><th><span class="i18n" data-i18n="roster.table.max_mult">Max Mult.</span></th><th><span class="i18n" data-i18n="roster.table.origin">Origin</span></th><th><span class="i18n" data-i18n="roster.table.active_days_wk">Active Days (this wk)</span></th></tr></thead>
-              <tbody>
-                <tr><td class="mono">BP1_bingoplusq8f0vr</td><td>782</td><td>₱59,955.00</td><td>₱54,955.00</td><td class="red">−₱5,000.00</td><td>91.66%</td><td>₱2,000.00</td><td>21.75x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_gp3fdzc3</td><td>194</td><td>₱19,400.00</td><td>₱14,400.00</td><td class="red">−₱5,000.00</td><td>74.23%</td><td>₱2,000.00</td><td>20.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusz6vgl3</td><td>348</td><td>₱54,605.00</td><td>₱49,637.50</td><td class="red">−₱4,967.50</td><td>90.90%</td><td>₱4,000.00</td><td>20.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusa3e3m1</td><td>337</td><td>₱15,055.00</td><td>₱10,577.50</td><td class="red">−₱4,477.50</td><td>70.26%</td><td>₱1,600.00</td><td>18.50x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingoplusznmj1r</td><td>107</td><td>₱12,460.00</td><td>₱8,465.00</td><td class="red">−₱3,995.00</td><td>67.94%</td><td>₱1,425.00</td><td>14.25x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingoplus1qfuux</td><td>75</td><td>₱7,400.50</td><td>₱3,850.00</td><td class="red">−₱3,550.50</td><td>52.02%</td><td>₱2,000.00</td><td>20.00x</td><td>Returning/Old BANANA CRAZE Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusdhebbl</td><td>91</td><td>₱14,300.00</td><td>₱11,150.00</td><td class="red">−₱3,150.00</td><td>77.97%</td><td>₱1,800.00</td><td>9.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_lp395raxp</td><td>59</td><td>₱5,800.50</td><td>₱2,800.00</td><td class="red">−₱3,000.50</td><td>48.27%</td><td>₱500.00</td><td>5.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplus7iwlqu</td><td>225</td><td>₱10,101.00</td><td>₱7,196.75</td><td class="red">−₱2,904.25</td><td>71.25%</td><td>₱2,250.00</td><td>75.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusw96rf8</td><td>112</td><td>₱8,200.00</td><td>₱5,385.00</td><td class="red">−₱2,815.00</td><td>65.67%</td><td>₱850.00</td><td>9.25x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusweopat</td><td>293</td><td>₱7,955.00</td><td>₱5,345.00</td><td class="red">−₱2,610.00</td><td>67.19%</td><td>₱800.00</td><td>21.50x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_lpway0r2d</td><td>83</td><td>₱13,541.00</td><td>₱10,965.00</td><td class="red">−₱2,576.00</td><td>80.98%</td><td>₱2,675.00</td><td>26.75x</td><td>GAME ENGINE New Players</td><td>2</td></tr>
-                <tr><td class="mono">BP1_bingoplusri8nof</td><td>2,286</td><td>₱50,545.00</td><td>₱48,008.75</td><td class="red">−₱2,536.25</td><td>94.98%</td><td>₱2,000.00</td><td>200.00x</td><td>GAME ENGINE New Players</td><td>4</td></tr>
-                <tr><td class="mono">BP1_bingoplus2cbp8d</td><td>62</td><td>₱6,200.00</td><td>₱3,700.00</td><td class="red">−₱2,500.00</td><td>59.68%</td><td>₱500.00</td><td>5.00x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-                <tr><td class="mono">BP1_bingoplusyvrfqg</td><td>131</td><td>₱13,000.50</td><td>₱10,525.75</td><td class="red">−₱2,474.75</td><td>80.96%</td><td>₱1,625.00</td><td>16.25x</td><td>GAME ENGINE New Players</td><td>1</td></tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="note" data-note-id="roster-7"><span class="i18n" data-i18n="roster.note.losers_intro" data-i18n-vars='{"iso_week": "September 2026"}'>Origin and Active Days (this week, max 7) are computed directly from this week's settled order rows. The monthly report's Status/Lifetime Bet/Lifetime Payout/Lifetime RTP columns come from the backend's live per-player Lifecycle report (<code>queryUserLifeCycleReportPage</code>), unscoped by date — that endpoint was not queried for this week-September 2026 rebuild, so those columns are dropped rather than estimated.</span>
+            <div class="panel">
+              <h2><span class="i18n" data-i18n="roster.panel.top_losers.title">Top 15 Losers</span> <small><span class="i18n" data-i18n="roster.panel.top_losers.sub">by net loss to player</span></small></h2>
+              <div class="table-scroll">
+              <table class="table-compact">
+                <thead><tr><th><span class="i18n" data-i18n="roster.table.login">Login</span></th><th><span class="i18n" data-i18n="overview.table.rounds">Rounds</span></th><th><span class="i18n" data-i18n="weekly.k.bet">Bet</span></th><th><span class="i18n" data-i18n="overview.table.payout">Payout</span></th><th><span class="i18n" data-i18n="roster.table.net_player">Net (Player)</span></th><th><span class="i18n" data-i18n="overview.table.rtp">RTP</span></th><th><span class="i18n" data-i18n="roster.table.max_payout">Max Payout</span></th><th><span class="i18n" data-i18n="roster.table.max_mult">Max Mult.</span></th><th><span class="i18n" data-i18n="roster.table.active_days_wk">Active Days (this wk)</span></th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">BP1_bingoplusq8f0vr</td><td>782</td><td>₱59,955.00</td><td>₱54,955.00</td><td class="red">−₱5,000.00</td><td>91.66%</td><td>₱2,000.00</td><td>21.75x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_gp3fdzc3</td><td>194</td><td>₱19,400.00</td><td>₱14,400.00</td><td class="red">−₱5,000.00</td><td>74.23%</td><td>₱2,000.00</td><td>20.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusz6vgl3</td><td>348</td><td>₱54,605.00</td><td>₱49,637.50</td><td class="red">−₱4,967.50</td><td>90.90%</td><td>₱4,000.00</td><td>20.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusa3e3m1</td><td>337</td><td>₱15,055.00</td><td>₱10,577.50</td><td class="red">−₱4,477.50</td><td>70.26%</td><td>₱1,600.00</td><td>18.50x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingoplusznmj1r</td><td>107</td><td>₱12,460.00</td><td>₱8,465.00</td><td class="red">−₱3,995.00</td><td>67.94%</td><td>₱1,425.00</td><td>14.25x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingoplus1qfuux</td><td>75</td><td>₱7,400.50</td><td>₱3,850.00</td><td class="red">−₱3,550.50</td><td>52.02%</td><td>₱2,000.00</td><td>20.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusdhebbl</td><td>91</td><td>₱14,300.00</td><td>₱11,150.00</td><td class="red">−₱3,150.00</td><td>77.97%</td><td>₱1,800.00</td><td>9.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_lp395raxp</td><td>59</td><td>₱5,800.50</td><td>₱2,800.00</td><td class="red">−₱3,000.50</td><td>48.27%</td><td>₱500.00</td><td>5.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplus7iwlqu</td><td>225</td><td>₱10,101.00</td><td>₱7,196.75</td><td class="red">−₱2,904.25</td><td>71.25%</td><td>₱2,250.00</td><td>75.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusw96rf8</td><td>112</td><td>₱8,200.00</td><td>₱5,385.00</td><td class="red">−₱2,815.00</td><td>65.67%</td><td>₱850.00</td><td>9.25x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusweopat</td><td>293</td><td>₱7,955.00</td><td>₱5,345.00</td><td class="red">−₱2,610.00</td><td>67.19%</td><td>₱800.00</td><td>21.50x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_lpway0r2d</td><td>83</td><td>₱13,541.00</td><td>₱10,965.00</td><td class="red">−₱2,576.00</td><td>80.98%</td><td>₱2,675.00</td><td>26.75x</td><td>2</td></tr>
+                  <tr><td class="mono">BP1_bingoplusri8nof</td><td>2,286</td><td>₱50,545.00</td><td>₱48,008.75</td><td class="red">−₱2,536.25</td><td>94.98%</td><td>₱2,000.00</td><td>200.00x</td><td>4</td></tr>
+                  <tr><td class="mono">BP1_bingoplus2cbp8d</td><td>62</td><td>₱6,200.00</td><td>₱3,700.00</td><td class="red">−₱2,500.00</td><td>59.68%</td><td>₱500.00</td><td>5.00x</td><td>1</td></tr>
+                  <tr><td class="mono">BP1_bingoplusyvrfqg</td><td>131</td><td>₱13,000.50</td><td>₱10,525.75</td><td class="red">−₱2,474.75</td><td>80.96%</td><td>₱1,625.00</td><td>16.25x</td><td>1</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <div class="note" data-note-id="roster-7"><span class="i18n" data-i18n="roster.note.losers_intro" data-i18n-vars='{"iso_week": "September 2026"}'>Origin and Active Days (this week, max 7) are computed directly from this week's settled order rows. The monthly report's Status/Lifetime Bet/Lifetime Payout/Lifetime RTP columns come from the backend's live per-player Lifecycle report (<code>queryUserLifeCycleReportPage</code>), unscoped by date — that endpoint was not queried for this week-September 2026 rebuild, so those columns are dropped rather than estimated.</span>
             <ul>
               <li><span class="i18n" data-i18n="roster.note.losers1">Among the Top 15 Losers, Game-Engine new players are the largest single group (6 of 15), but returning players (BC or other games combined, 9 of 15) make up a slightly larger share here than among the Top 15 Winners (7 of 15).</span></li>
               <li><span class="i18n" data-i18n="roster.note.losers2">The week's single biggest loser, <span class="mono">BP1_bingoplusz6vgl3</span> (−₱4,967.50), came from other games and bet ₱54,605.00 across just 1 active day — the largest single-day stake in either top-15 table.</span></li>
             </ul></div>
+            </div>
           </div>
         </section>
 
