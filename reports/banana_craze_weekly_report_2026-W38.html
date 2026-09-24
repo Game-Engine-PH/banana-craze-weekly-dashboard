@@ -40,7 +40,31 @@
   .sidebar-footer .badge-logo.video-badge{background:transparent; padding:0; border-radius:10px; overflow:hidden; width:100%; box-shadow:0 6px 18px rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.08);}
   .sidebar-footer img{height:19px; width:auto; display:block;}
   .sidebar-footer video{width:100%; aspect-ratio:16/9; height:auto; object-fit:cover; display:block;}
-  .navgroup-label{font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:#6E80AC; padding:12px 16px 5px;}
+  /* Group header. The old label sat at #6E80AC on the navy->purple gradient,
+     which is close to invisible on a laptop at an angle; this lifts it to a
+     legible tint and gives it the full row as a click target, since it is now
+     the control that folds the group. */
+  .navgroup{margin:2px 0;}
+  .navgroup-label{
+    display:flex; align-items:center; gap:6px; width:100%; box-sizing:border-box;
+    background:none; border:0; border-top:1px solid rgba(255,255,255,.07);
+    font:inherit; font-family:inherit;
+    font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+    color:#A9BCE8; padding:11px 16px 6px; cursor:pointer; text-align:left;
+    transition:color .15s ease;
+  }
+  .navgroup:first-of-type .navgroup-label{border-top:0;}
+  .navgroup-label:hover{color:#E4EBFF;}
+  .navgroup-chev{
+    margin-left:auto; width:7px; height:7px; flex:0 0 auto;
+    border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg) translate(-1px,-1px); transition:transform .18s ease;
+    opacity:.75;
+  }
+  .navgroup.collapsed .navgroup-chev{transform:rotate(-45deg) translate(-2px,0);}
+  .navgroup.collapsed .navgroup-items{display:none;}
+  .navgroup.collapsed .navgroup-label{color:#8C9DC9;}
+  .navgroup-label:focus-visible{outline:2px solid var(--blue); outline-offset:-2px;}
   .navitem{
     display:flex; align-items:center; gap:9px; padding:8.5px 16px; font-size:12px; font-weight:600;
     color:#C1CCE6; cursor:pointer; border-left:3px solid transparent; transition:background .15s,color .15s;
@@ -550,22 +574,36 @@
         <strong>Banana Craze — <span class="i18n" data-i18n="chrome.brand.weekly">Weekly</span></strong>
         <div class="sub">Week 38, 2026 (Sep 14–20)</div>
       </div>
+    </div><div class="navgroup" data-group="report">
+      <button type="button" class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_report">Report</span><span class="navgroup-chev" aria-hidden="true"></span></button>
+      <div class="navgroup-items">
+        <div class="navitem active" data-page="overview"><span class="ic">📊</span> <span class="i18n" data-i18n="chrome.nav.overview">Overview</span></div>
+      </div>
     </div>
 
-    <div class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_report">Report</span></div>
-    <div class="navitem active" data-page="overview"><span class="ic">📊</span> <span class="i18n" data-i18n="chrome.nav.overview">Overview</span></div>
+    <div class="navgroup" data-group="performance">
+      <button type="button" class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_performance">Performance</span><span class="navgroup-chev" aria-hidden="true"></span></button>
+      <div class="navgroup-items">
+        <div class="navitem" data-page="weekly"><span class="ic">📅</span> <span class="i18n" data-i18n="chrome.nav.weekly">Weekly Comparison</span></div>
+        <div class="navitem" data-page="daily"><span class="ic">🔍</span> <span class="i18n" data-i18n="chrome.nav.daily">Daily Drill-Down</span></div>
+        <div class="navitem" data-page="time"><span class="ic">⏱️</span> <span class="i18n" data-i18n="chrome.nav.time">Time Patterns</span></div>
+      </div>
+    </div>
 
-    <div class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_performance">Performance</span></div>
-    <div class="navitem" data-page="weekly"><span class="ic">📅</span> <span class="i18n" data-i18n="chrome.nav.weekly">Weekly Comparison</span></div>
-    <div class="navitem" data-page="daily"><span class="ic">🔍</span> <span class="i18n" data-i18n="chrome.nav.daily">Daily Drill-Down</span></div>
-    <div class="navitem" data-page="time"><span class="ic">⏱️</span> <span class="i18n" data-i18n="chrome.nav.time">Time Patterns</span></div>
+    <div class="navgroup" data-group="players">
+      <button type="button" class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_players">Players</span><span class="navgroup-chev" aria-hidden="true"></span></button>
+      <div class="navgroup-items">
+        <div class="navitem" data-page="roster"><span class="ic">👥</span> <span class="i18n" data-i18n="chrome.nav.roster">Players & Value</span></div>
+        <div class="navitem" data-page="players"><span class="ic">🌱</span> <span class="i18n" data-i18n="chrome.nav.players">New Player & Churn Analysis</span></div>
+      </div>
+    </div>
 
-    <div class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_players">Players</span></div>
-    <div class="navitem" data-page="roster"><span class="ic">👥</span> <span class="i18n" data-i18n="chrome.nav.roster">Players & Value</span></div>
-    <div class="navitem" data-page="players"><span class="ic">🌱</span> <span class="i18n" data-i18n="chrome.nav.players">New Player & Churn Analysis</span></div>
-
-    <div class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_math">Math</span></div>
-    <div class="navitem" data-page="math"><span class="ic">🎲</span> <span class="i18n" data-i18n="chrome.nav.math">Game & Math Performance</span></div>
+    <div class="navgroup" data-group="math">
+      <button type="button" class="navgroup-label"><span class="i18n" data-i18n="chrome.nav.group_math">Math</span><span class="navgroup-chev" aria-hidden="true"></span></button>
+      <div class="navgroup-items">
+        <div class="navitem" data-page="math"><span class="ic">🎲</span> <span class="i18n" data-i18n="chrome.nav.math">Game & Math Performance</span></div>
+      </div>
+    </div>
 
     <div class="sidebar-logo">
       <img src="../banana_craze_entrylogo.gif" alt="Banana Craze">
@@ -3778,6 +3816,64 @@ document.addEventListener('DOMContentLoaded', () => {
   try { showValues = localStorage.getItem('bc_report_showvalues') !== '0'; } catch (e) {}
   bcSetShowValues(showValues);
 });
+
+/* ---------- Sidebar groups: fold / unfold ----------
+   The templates emit each group as .navgroup > (button.navgroup-label +
+   .navgroup-items). A report rendered before that change -- and any frozen
+   archived copy -- still has the older flat shape: a label div followed by its
+   items. Those are wrapped in place here rather than assumed away, so one
+   toggle handler covers every report regardless of which shape it shipped in.
+   The group holding the active page always starts open, so restoring a folded
+   section can never hide where you currently are. */
+(function () {
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar) return;
+
+  [...sidebar.querySelectorAll('.navgroup-label')].forEach((label, i) => {
+    if (label.closest('.navgroup')) return;
+    const run = [];
+    for (let n = label.nextElementSibling; n; n = n.nextElementSibling) {
+      if (n.classList.contains('navgroup-label') || n.classList.contains('sidebar-logo')
+          || n.classList.contains('sidebar-footer')) break;
+      run.push(n);
+    }
+    const group = document.createElement('div');
+    group.className = 'navgroup';
+    group.dataset.group = 'legacy-' + i;
+    const items = document.createElement('div');
+    items.className = 'navgroup-items';
+    label.parentNode.insertBefore(group, label);
+    group.appendChild(label);
+    group.appendChild(items);
+    run.forEach(el => items.appendChild(el));
+    label.setAttribute('role', 'button');
+    label.setAttribute('tabindex', '0');
+  });
+
+  const KEY = 'bc_nav_collapsed';
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) {}
+
+  sidebar.querySelectorAll('.navgroup').forEach(group => {
+    const label = group.querySelector('.navgroup-label');
+    if (!label) return;
+    const name = group.dataset.group || label.textContent.trim();
+    const holdsActive = !!group.querySelector('.navitem.active');
+    const startFolded = !!saved[name] && !holdsActive;
+    group.classList.toggle('collapsed', startFolded);
+    label.setAttribute('aria-expanded', startFolded ? 'false' : 'true');
+    const toggle = () => {
+      const now = group.classList.toggle('collapsed');
+      label.setAttribute('aria-expanded', now ? 'false' : 'true');
+      saved[name] = now;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    };
+    label.addEventListener('click', toggle);
+    label.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+})();
 
 const navItems = document.querySelectorAll('.navitem');
 const pages = document.querySelectorAll('.page');

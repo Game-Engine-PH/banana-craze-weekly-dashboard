@@ -504,6 +504,29 @@
   }
   .sample-banner .body{font-weight:600; line-height:1.45;}
 
+
+/* collapsible sidebar groups */
+  .navgroup{margin:2px 0;}
+  .navgroup-label{
+    display:flex; align-items:center; gap:6px; width:100%; box-sizing:border-box;
+    background:none; border:0; border-top:1px solid rgba(255,255,255,.07);
+    font:inherit; font-family:inherit;
+    font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+    color:#A9BCE8; padding:11px 16px 6px; cursor:pointer; text-align:left;
+    transition:color .15s ease;
+  }
+  .navgroup:first-of-type .navgroup-label{border-top:0;}
+  .navgroup-label:hover{color:#E4EBFF;}
+  .navgroup-chev{
+    margin-left:auto; width:7px; height:7px; flex:0 0 auto;
+    border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg) translate(-1px,-1px); transition:transform .18s ease;
+    opacity:.75;
+  }
+  .navgroup.collapsed .navgroup-chev{transform:rotate(-45deg) translate(-2px,0);}
+  .navgroup.collapsed .navgroup-items{display:none;}
+  .navgroup.collapsed .navgroup-label{color:#8C9DC9;}
+  .navgroup-label:focus-visible{outline:2px solid var(--blue); outline-offset:-2px;}
 </style>
 </head>
 <body class="theme-monthly">
@@ -4084,5 +4107,65 @@ const pageCharts = {
 
 </script>
 
+
+<script>
+/* ---------- Sidebar groups: fold / unfold ----------
+   The templates emit each group as .navgroup > (button.navgroup-label +
+   .navgroup-items). A report rendered before that change -- and any frozen
+   archived copy -- still has the older flat shape: a label div followed by its
+   items. Those are wrapped in place here rather than assumed away, so one
+   toggle handler covers every report regardless of which shape it shipped in.
+   The group holding the active page always starts open, so restoring a folded
+   section can never hide where you currently are. */
+(function () {
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar) return;
+
+  [...sidebar.querySelectorAll('.navgroup-label')].forEach((label, i) => {
+    if (label.closest('.navgroup')) return;
+    const run = [];
+    for (let n = label.nextElementSibling; n; n = n.nextElementSibling) {
+      if (n.classList.contains('navgroup-label') || n.classList.contains('sidebar-logo')
+          || n.classList.contains('sidebar-footer')) break;
+      run.push(n);
+    }
+    const group = document.createElement('div');
+    group.className = 'navgroup';
+    group.dataset.group = 'legacy-' + i;
+    const items = document.createElement('div');
+    items.className = 'navgroup-items';
+    label.parentNode.insertBefore(group, label);
+    group.appendChild(label);
+    group.appendChild(items);
+    run.forEach(el => items.appendChild(el));
+    label.setAttribute('role', 'button');
+    label.setAttribute('tabindex', '0');
+  });
+
+  const KEY = 'bc_nav_collapsed';
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) {}
+
+  sidebar.querySelectorAll('.navgroup').forEach(group => {
+    const label = group.querySelector('.navgroup-label');
+    if (!label) return;
+    const name = group.dataset.group || label.textContent.trim();
+    const holdsActive = !!group.querySelector('.navitem.active');
+    const startFolded = !!saved[name] && !holdsActive;
+    group.classList.toggle('collapsed', startFolded);
+    label.setAttribute('aria-expanded', startFolded ? 'false' : 'true');
+    const toggle = () => {
+      const now = group.classList.toggle('collapsed');
+      label.setAttribute('aria-expanded', now ? 'false' : 'true');
+      saved[name] = now;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    };
+    label.addEventListener('click', toggle);
+    label.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+})();
+</script>
 </body>
 </html>
