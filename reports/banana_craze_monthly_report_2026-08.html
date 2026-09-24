@@ -99,10 +99,10 @@
     font:inherit; font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:20px; cursor:pointer; letter-spacing:.02em;}
   .publish-btn:hover{background:rgba(255,255,255,.16); color:#fff;}
 
-  .filter-strip{background:var(--panel); border-bottom:1px solid var(--border); padding:7px 24px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;}
-  .chip{background:#EEF3FC; border:1px solid var(--border); color:var(--navy); font-size:10.5px; font-weight:600; padding:4px 10px; border-radius:7px; display:flex; align-items:center; gap:5px;}
-  .chip .k{color:var(--muted); font-weight:500;}
-  .chip.today{background:#FFF7E8; border-color:#F5DDA5; color:#8A6400;}
+  
+  
+  
+  
 
   .wrap{padding:16px 24px 30px;}
 
@@ -537,11 +537,21 @@
 .brand-month{font-size:11px; font-weight:700; color:#DCE6FA; letter-spacing:.01em;}
 .brand-span{font-size:10px; font-weight:800; color:#0B1730; background:#9CC4FF;
     border-radius:5px; padding:2.5px 8px; letter-spacing:.01em; white-space:nowrap;}
-.filter-strip{background:var(--panel); border-bottom:1px solid var(--border); padding:8px 24px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
-.chip{background:#EEF3FC; border:1px solid var(--border); color:var(--navy); font-size:11px; font-weight:600; padding:5px 11px; border-radius:7px; display:flex; align-items:center; gap:6px;}
-.chip .k{color:var(--muted); font-weight:600; font-size:10px; text-transform:uppercase; letter-spacing:.05em;}
-.chip.today{background:#FFF7E8; border-color:#F5DDA5; color:#7A5800; font-weight:700;
-    box-shadow:inset 3px 0 0 #E8A93B;}</style>
+
+
+
+.filter-strip{background:linear-gradient(180deg,#FFFFFF,#F6F8FC); border-bottom:1px solid var(--border);
+    padding:11px 24px; display:flex; flex-wrap:wrap; gap:10px; align-items:stretch;}
+.chip{display:flex; align-items:baseline; gap:9px;
+    background:var(--panel); border:1px solid var(--border); border-radius:9px;
+    padding:8px 15px; font-size:14px; font-weight:700; color:var(--navy);
+    box-shadow:0 1px 2px rgba(15,30,60,.05);}
+.chip .k{font-size:9.5px; font-weight:800; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--muted); align-self:center;}
+.chip.today{background:#FFF8EA; border-color:#EFD9A8; color:#6B4E00;
+    font-size:14.5px; padding-left:17px;
+    box-shadow:inset 4px 0 0 #E8A93B, 0 1px 2px rgba(15,30,60,.05);}
+.chip.today .k{color:#A07C28;}</style>
 </head>
 <body class="theme-monthly">
 
